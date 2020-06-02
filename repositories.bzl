@@ -53,6 +53,12 @@ def ign_msgs_repositories():
         ],
     )
 
+def ignition_repositories():
+  ign_bazel_repositories()
+  ign_math_repositories()
+  ign_common_repositories()
+  ign_msgs_repositories()
+
 
 def _maybe(repo_rule, name, **kwargs):
     if name not in native.existing_rules():
