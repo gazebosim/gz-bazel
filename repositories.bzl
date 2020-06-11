@@ -1,5 +1,6 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+
 def ign_bazel_repositories():
     _maybe(
         http_archive,
@@ -29,17 +30,7 @@ def ign_math_repositories():
     )
 
 def ign_common_repositories():
-    _maybe(
-        http_archive,
-        name="ffmpeg_3_4",
-        build_file = "//ign_bazel/third_party:ffmpeg_3_4.BUILD",
-        sha256 = "bbccc87cd031498728bcc2dba5596a47e6fd92b2cec060a71feef65617a261fe",
-        strip_prefix = "FFmpeg-n3.4.4",
-        urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/FFmpeg/FFmpeg/archive/n3.4.4.tar.gz",
-            "https://github.com/FFmpeg/FFmpeg/archive/n3.4.4.tar.gz",
-        ],
-    )
+  pass
 
 def ign_msgs_repositories():
     _maybe(
