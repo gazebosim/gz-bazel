@@ -44,3 +44,15 @@ cc_library(
 )
 """
 )
+
+new_local_repository(
+    name = "eigen3",
+    path = "/usr/include/eigen3",
+    build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*"])
+)
+"""
+)
