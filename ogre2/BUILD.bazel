@@ -1,0 +1,286 @@
+cc_library(
+    name = "build_settings",
+    hdrs = glob([
+        "generated/include/*.h",
+    ]),
+    includes = [
+        "generated/include",
+    ],
+    visibility = ["//visibility:private"],
+    alwayslink = 1,
+)
+
+cc_library(
+    name = "ogre_main_headers",
+    includes = [
+        "OgreMain/include",
+        "OgreMain/include/GLX",
+        "OgreMain/include/Threading",
+        "OgreMain/include/Math",
+        "OgreMain/include/Animation",
+        "OgreMain/include/CommandBuffer",
+        "OgreMain/include/Compositor",
+        "OgreMain/include/stbi",
+        "OgreMain/include/Hash",
+        "RenderSystems/GL3Plus/include",
+        "RenderSystems/GL3Plus/include/GLSL",
+        "RenderSystems/GL3Plus/src/windowing/GLX",
+        "RenderSystems/GL3Plus/include/windowing/GLX",
+    ],
+    visibility = ["//visibility:private"],
+    deps = [
+        ":build_settings",
+    ],
+    alwayslink = 1,
+)
+
+cc_library(
+    name = "ogre_main",
+    srcs =
+        glob(
+            [
+                "OgreMain/src/*.cpp",
+                "OgreMain/src/Animation/*.cpp",
+                "OgreMain/src/CommandBuffer/*.cpp",
+                "OgreMain/src/Compositor/*.cpp",
+                "OgreMain/src/Compositor/**/*.cpp",
+                "OgreMain/src/GLX/*.cpp",
+                "OgreMain/src/stbi/*.c",
+                "OgreMain/src/Hash/*.cpp",
+                "OgreMain/src/nedmalloc/*.c",
+                "OgreMain/src/Math/Array/SSE2/Single/*.cpp",
+                "OgreMain/src/Math/Simple/C/*.cpp",
+            ],
+            exclude = [
+                "OgreMain/src/OgreConfigDialogNoOp.cpp",
+                "OgreMain/src/OgreFileSystemLayerNoOp.cpp",
+                "OgreMain/src/OgreDDSCodec.cpp",
+                "OgreMain/src/OgrePVRTCCodec.cpp",
+                "OgreMain/src/OgreETCCodec.cpp",
+                "OgreMain/src/OgreZip.cpp",
+                "OgreMain/src/OgreSTBICodec.cpp",
+            ],
+        ) + [
+            "OgreMain/src/Threading/OgreDefaultWorkQueueStandard.cpp",
+            "OgreMain/src/Threading/OgreBarrierPThreads.cpp",
+            "OgreMain/src/Threading/OgreLightweightMutexPThreads.cpp",
+            "OgreMain/src/Threading/OgreThreadsPThreads.cpp",
+        ],
+    hdrs =
+        glob(
+            [
+                "OgreMain/include/*.h",
+                "OgreMain/include/*.inl",
+                "OgreMain/include/debugbreak/*.h",
+                "OgreMain/src/GLX/*.h",
+                "OgreMain/include/GLX/*.h",
+                "OgreMain/src/stbi/*.h",
+                "OgreMain/src/nedmalloc/*.h",
+                "OgreMain/include/Hash/*.h",
+                "OgreMain/include/Vao/*.h",
+                "OgreMain/include/Threading/*.h",
+                "OgreMain/include/Animation/*.h",
+                "OgreMain/include/Animation/*.inl",
+                "OgreMain/include/Compositor/*.h",
+                "OgreMain/include/Compositor/**/*.h",
+                "OgreMain/include/CommandBuffer/*.h",
+                "OgreMain/include/Math/Array/*.h",
+                "OgreMain/include/Math/Simple/*.h",
+                "OgreMain/include/Math/Simple/C/*.h",
+                "OgreMain/include/Math/Simple/C/*.inl",
+                "OgreMain/include/Math/Array/SSE2/Single/*.h",
+                "OgreMain/include/Math/Array/SSE2/Single/*.inl",
+            ],
+        ) + [
+            "generated/include/OgreBuildSettings.h",
+            "OgreMain/src/OgreImageResampler.h",
+            "OgreMain/src/OgrePixelConversions.h",
+            "OgreMain/src/OgreSIMDHelper.h",
+        ],
+    copts = [
+        "-DOgreMain_EXPORTS",
+        "-Wno-implicit-fallthrough",
+        "-Wno-string-conversion",
+        "-Wno-deprecated-declarations",
+    ],
+    includes = [
+        "OgreMain/include/Threading",
+    ],
+    linkopts = [
+        "-rdynamic",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":build_settings",
+        ":ogre_main_headers",
+    ],
+    alwayslink = 1,
+)
+
+ogre_gl_support_hdrs = glob(
+    [
+        "RenderSystems/GL3Plus/include/*.h",
+        "RenderSystems/GL3Plus/include/GL/*.h",
+        "RenderSystems/GL3Plus/include/GLSL/*.h",
+        "RenderSystems/GL3Plus/include/Vao/*.h",
+        "RenderSystems/GL3Plus/include/windowing/*.h",
+        "RenderSystems/GL3Plus/include/windowing/GLX/*.h",
+        "RenderSystems/GL3Plus/src/windowing/*.h",
+        "RenderSystems/GL3Plus/src/windowing/GLX/*.h",
+    ],
+)
+
+ogre_gl_support_includes = glob(
+    [
+        "RenderSystems/GL3Plus/include",
+        "RenderSystems/GL3Plus/include/GL",
+        "RenderSystems/GL3Plus/include/GLSL",
+        "RenderSystems/GL3Plus/include/Vao",
+        "RenderSystems/GL3Plus/include/windowing",
+        "RenderSystems/GL3Plus/include/windowing/GLX",
+        "RenderSystems/GL3Plus/src/windowing",
+        "RenderSystems/GL3Plus/src/windowing/GLX",
+        "generated/include",
+    ]    
+)
+
+ogre_gl_support_srcs = glob(
+    [
+        "RenderSystems/GL3Plus/src/windowing/GLX/*.cpp",
+        "RenderSystems/GL3Plus/src/GLSL/*.cpp",
+        "RenderSystems/GL3Plus/src/Vao/*.cpp",
+        "RenderSystems/GL3Plus/src/*.cpp",
+    ],
+)
+
+cc_library(
+   name = "rendersystem_gl",
+   srcs = ogre_gl_support_srcs,
+   hdrs = ogre_gl_support_hdrs,
+   includes = ogre_gl_support_includes,
+   copts = [
+       "-Wno-implicit-fallthrough",
+   ],
+   deps = [
+       ":ogre_main",
+   ],
+   alwayslink = 1,
+   visibility = ["//visibility:public"],
+)
+
+#cc_library(
+#   name = "hlms_pbs_no_include",
+#   hdrs = glob(
+#       [
+#           "Components/Hlms/Pbs/include/*.h",
+#           "Components/Hlms/Pbs/include/Cubemaps/*.h",
+#           "Components/Hlms/Pbs/include/InstantRadiosity/*.h",
+#       ]
+#   ),
+#   strip_include_prefix = "Components/Hlms/Pbs/include",
+#   include_prefix = "Components/Hlms/Pbs",
+#   deps = [
+#       ":ogre_main",
+#       ":hlms_common",
+#   ],
+#   visibility = ["//visibility:public"],
+#   alwayslink = 1,
+#)
+
+cc_library(
+    name = "mesh_lod_generator",
+    srcs = glob(
+        [
+            "Components/MeshLodGenerator/src/*.cpp",
+        ]
+    ),
+    hdrs = glob(
+        [
+            "Components/MeshLodGenerator/include/*.h",
+        ]
+    ),
+    includes = [
+        "Components/MeshLodGenerator/include",
+    ],
+    deps = [
+        ":ogre_main",
+    ],
+    alwayslink = 1,
+)
+
+cc_library(
+    name = "planar_reflections",
+    srcs = glob(
+        [
+            "Components/PlanarReflections/src/*.cpp",
+        ]
+    ),
+    hdrs = glob(
+        [
+            "Components/PlanarReflections/include/*.h",
+        ]
+    ),
+    includes = [
+        "Components/PlanarReflections/include",
+    ],
+    deps = [
+        ":ogre_main",
+    ],
+    alwayslink = 1,
+)
+
+cc_library(
+    name = "particle_fx_plugin",
+    srcs = glob(
+        [
+            "PlugIns/ParticleFX/src/*.cpp",
+        ]
+    ),
+    hdrs = glob(
+        [
+            "PlugIns/ParticleFX/include/*.h",
+        ]
+    ),
+    includes = [
+        "PlugIns/ParticleFX/include",
+    ],
+    deps = [
+        ":ogre_main",
+    ],
+    alwayslink = 1,
+)
+
+cc_library(
+    name = "components",
+    deps = [
+        ":mesh_lod_generator",
+        ":planar_reflections",
+        "//ogre2/Components:overlay",
+    ],
+    visibility = ["//visibility:private"],
+    alwayslink = 1,
+)
+
+cc_library(
+    name = "plugins",
+    deps = [
+        ":particle_fx_plugin",
+    ],
+    visibility = ["//visibility:private"],
+    alwayslink = 1,
+)
+'''
+cc_library(
+    name = "ogre2",
+    deps = [
+        ":ogre_main",
+        "//ogre2/Components:hlms_unlit",
+        "//ogre2/Components:overlay",
+        ":rendersystem_gl",
+        ":components",
+        ":plugins",
+    ],
+    visibility = ["//visibility:public"],
+    alwayslink = 1,
+)
+'''
