@@ -4,7 +4,7 @@ def eigen3():
     _maybe(
         http_archive,
         name = "eigen3",
-        build_file = "//ign_bazel/third_party:eigen.BUILD",
+        build_file = "//ign_bazel/third_party:eigen3.BUILD",
         sha256 = "ca7beac153d4059c02c8fc59816c82d54ea47fe58365e8aded4082ded0b820c4",
         strip_prefix = "eigen-eigen-f3a22f35b044",
         urls = [
