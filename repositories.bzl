@@ -3,7 +3,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 def eigen3():
     _maybe(
         http_archive,
-        name = "org_tuxfamily_eigen",
+        name = "eigen3",
         build_file = "//ign_bazel/third_party:eigen.BUILD",
         sha256 = "ca7beac153d4059c02c8fc59816c82d54ea47fe58365e8aded4082ded0b820c4",
         strip_prefix = "eigen-eigen-f3a22f35b044",
@@ -43,7 +43,6 @@ cc_library(
 )
 """
 )
-
     native.new_local_repository(
         name = "glibconfig",
         path = "/usr/lib/x86_64-linux-gnu/glib-2.0/include",

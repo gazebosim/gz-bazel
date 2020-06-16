@@ -49,7 +49,7 @@ EIGEN_MPL2_HEADER_FILES = glob(
 )
 
 cc_library(
-    name = "eigen",
+    name = "eigen3",
     hdrs = EIGEN_MPL2_HEADER_FILES,
     includes = ["."],
     visibility = ["//visibility:public"],
