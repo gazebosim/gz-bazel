@@ -1,4 +1,3 @@
-
 cc_library(
     name = "dart-dynamics",
     srcs = glob([
@@ -14,7 +13,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-common",
         ":dart-math",
         ":dart-external",
@@ -38,7 +37,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-common",
     ],
     visibility = ["//visibility:private"],
@@ -59,7 +58,7 @@ cc_library(
         "-Iexternal/eigen3",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
     ],
     visibility = ["//visibility:private"],
     alwayslink = 1,
@@ -80,7 +79,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-dynamics",
         ":dart-math",
     ],
@@ -103,7 +102,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision-core",
@@ -125,7 +124,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision-core",
@@ -147,7 +146,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision-core",
@@ -198,11 +197,10 @@ cc_library(
         "dart/constraint/detail/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-dynamics",
         ":dart-common",
         ":dart-math",
@@ -227,7 +225,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-dynamics",
         ":dart-collision",
         ":dart-common",
@@ -250,7 +248,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
     ],
     visibility = ["//visibility:private"],
     alwayslink = 1,
@@ -273,7 +271,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision",
@@ -305,7 +303,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-math",
         ":dart-common",
     ],
@@ -326,7 +324,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@eigen3//:headers",
+        "@org_tuxfamily_eigen//:eigen",
         ":dart-math",
         ":dart-common",
         ":dart-external",
