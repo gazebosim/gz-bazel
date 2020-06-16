@@ -32,7 +32,29 @@ def ign_math_repositories():
     eigen3()
 
 def ign_common_repositories():
-  pass
+    native.new_local_repository(
+        name = "glib",
+        path = "/usr/include/glib-2.0",
+        build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
+)
+
+    native.new_local_repository(
+        name = "glibconfig",
+        path = "/usr/lib/x86_64-linux-gnu/glib-2.0/include",
+        build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
+    )
 
 def ign_msgs_repositories():
     _maybe(
