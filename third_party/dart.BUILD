@@ -9,11 +9,10 @@ cc_library(
         "dart/dynamics/detail/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-common",
         ":dart-math",
         ":dart-external",
@@ -33,11 +32,10 @@ cc_library(
         "dart/math/detail/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-common",
     ],
     visibility = ["//visibility:private"],
@@ -54,11 +52,8 @@ cc_library(
         "dart/common/*.hpp",
         "dart/common/detail/*.hpp",
     ]),
-    copts = [
-        "-Iexternal/eigen3",
-    ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
     ],
     visibility = ["//visibility:private"],
     alwayslink = 1,
@@ -75,11 +70,10 @@ cc_library(
         "dart/collision/detail/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-dynamics",
         ":dart-math",
     ],
@@ -98,11 +92,10 @@ cc_library(
         "dart/collision/ode/detail/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision-core",
@@ -120,11 +113,10 @@ cc_library(
         "dart/collision/fcl/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision-core",
@@ -142,11 +134,10 @@ cc_library(
         "dart/collision/dart/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision-core",
@@ -200,7 +191,7 @@ cc_library(
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-dynamics",
         ":dart-common",
         ":dart-math",
@@ -221,11 +212,10 @@ cc_library(
         "dart/simulation/detail/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-dynamics",
         ":dart-collision",
         ":dart-common",
@@ -244,11 +234,10 @@ cc_library(
         "dart/integration/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
     ],
     visibility = ["//visibility:private"],
     alwayslink = 1,
@@ -267,11 +256,10 @@ cc_library(
         "dart/utils/urdf/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-dynamics",
         ":dart-math",
         ":dart-collision",
@@ -299,11 +287,10 @@ cc_library(
         # "dart/optimizer/snopt/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-math",
         ":dart-common",
     ],
@@ -320,11 +307,10 @@ cc_library(
         "dart/lcpsolver/*.hpp",
     ]),
     copts = [
-        "-Iexternal/eigen3",
         "-Idart",
     ],
     deps = [
-        "@org_tuxfamily_eigen//:eigen",
+        "@eigen3",
         ":dart-math",
         ":dart-common",
         ":dart-external",
