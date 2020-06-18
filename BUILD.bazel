@@ -5,3 +5,11 @@ py_binary(
     srcs = ["cmake_configure_file.py"],
     visibility = ["//visibility:public"],
 )
+
+cc_library(
+    name = "utilities",
+    srcs = ["ignition/utilities/SuppressWarning.hh",
+            "ignition/utilities/detail/SuppressWarning.hh"],
+    includes = ["."],
+    visibility = ["//visibility:public"],
+)

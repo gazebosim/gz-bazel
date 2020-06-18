@@ -1,5 +1,34 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+def freetype():
+    native.new_local_repository(
+      name = "freetype2",
+      path = "/usr/include/freetype2",
+      build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
+)
+
+def eigen3():
+    _maybe(
+        http_archive,
+        name = "eigen3",
+        build_file = "//ign_bazel/third_party:eigen3.BUILD",
+        sha256 = "ca7beac153d4059c02c8fc59816c82d54ea47fe58365e8aded4082ded0b820c4",
+        strip_prefix = "eigen-eigen-f3a22f35b044",
+        urls = [
+            "http://mirror.bazel.build/bitbucket.org/eigen/eigen/get/f3a22f35b044.tar.gz",
+            "https://bitbucket.org/eigen/eigen/get/f3a22f35b044.tar.gz",
+        ],
+    )
+
+def ogre_repositories():
+    freetype()
+
 def ign_bazel_repositories():
     _maybe(
         http_archive,
@@ -16,29 +45,30 @@ def ign_bazel_repositories():
     )
 
 def ign_math_repositories():
-    _maybe(
-        http_archive,
-        name = "org_tuxfamily_eigen",
-        build_file = "//ign_bazel/third_party:eigen.BUILD",
-        sha256 = "ca7beac153d4059c02c8fc59816c82d54ea47fe58365e8aded4082ded0b820c4",
-        strip_prefix = "eigen-eigen-f3a22f35b044",
-        urls = [
-            "http://mirror.bazel.build/bitbucket.org/eigen/eigen/get/f3a22f35b044.tar.gz",
-            "https://bitbucket.org/eigen/eigen/get/f3a22f35b044.tar.gz",
-        ],
-    )
+    eigen3()
 
 def ign_common_repositories():
-    _maybe(
-        http_archive,
-        name="ffmpeg_3_4",
-        build_file = "//ign_bazel/third_party:ffmpeg_3_4.BUILD",
-        sha256 = "bbccc87cd031498728bcc2dba5596a47e6fd92b2cec060a71feef65617a261fe",
-        strip_prefix = "FFmpeg-n3.4.4",
-        urls = [
-            "https://storage.googleapis.com/mirror.tensorflow.org/github.com/FFmpeg/FFmpeg/archive/n3.4.4.tar.gz",
-            "https://github.com/FFmpeg/FFmpeg/archive/n3.4.4.tar.gz",
-        ],
+    native.new_local_repository(
+        name = "glib",
+        path = "/usr/include/glib-2.0",
+        build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
+)
+    native.new_local_repository(
+        name = "glibconfig",
+        path = "/usr/lib/x86_64-linux-gnu/glib-2.0/include",
+        build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
     )
 
 def ign_msgs_repositories():
@@ -53,11 +83,26 @@ def ign_msgs_repositories():
         ],
     )
 
+def ign_physics_repositories():
+    eigen3()
+    _maybe(
+        http_archive,
+        name = "dart",
+        sha256 = "defd450c86ae38bc91db7e7722f9238b904dd94e3f04092a8a530a47c4d6f628",
+        build_file = "//ign_bazel/third_party:dart.BUILD",
+        strip_prefix = "dart-azeey-friction_per_shape_more_params",
+        urls = [
+            "https://github.com/azeey/dart/archive/azeey/friction_per_shape_more_params.tar.gz",
+        ],
+    )
+
 def ignition_repositories():
+  ogre_repositories()
   ign_bazel_repositories()
   ign_math_repositories()
   ign_common_repositories()
   ign_msgs_repositories()
+  ign_physics_repositories()
 
 
 def _maybe(repo_rule, name, **kwargs):
