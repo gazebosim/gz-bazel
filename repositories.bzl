@@ -1,5 +1,18 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+def freetype():
+    native.new_local_repository(
+      name = "freetype2",
+      path = "/usr/include/freetype2",
+      build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
+)
+
 def eigen3():
     _maybe(
         http_archive,
@@ -12,6 +25,9 @@ def eigen3():
             "https://bitbucket.org/eigen/eigen/get/f3a22f35b044.tar.gz",
         ],
     )
+
+def ogre_repositories():
+    freetype()
 
 def ign_bazel_repositories():
     _maybe(
@@ -71,8 +87,9 @@ def ign_physics_repositories():
     eigen3()
     _maybe(
         http_archive,
-        build_file = "//ign_bazel/third_party:dart.BUILD",
         name = "dart",
+        sha256 = "defd450c86ae38bc91db7e7722f9238b904dd94e3f04092a8a530a47c4d6f628",
+        build_file = "//ign_bazel/third_party:dart.BUILD",
         strip_prefix = "dart-azeey-friction_per_shape_more_params",
         urls = [
             "https://github.com/azeey/dart/archive/azeey/friction_per_shape_more_params.tar.gz",
@@ -80,6 +97,7 @@ def ign_physics_repositories():
     )
 
 def ignition_repositories():
+  ogre_repositories()
   ign_bazel_repositories()
   ign_math_repositories()
   ign_common_repositories()
