@@ -24,14 +24,16 @@ RUN apt-get update -qq \
  && apt-get clean -qq
 
 RUN mkdir /ignition
+WORKDIR /ignition
+
 ADD WORKSPACE.example /ignition/WORKSPACE
 ADD BUILD.example /ignition/BUILD.bazel
 ADD bazelrc.example /ignition/.bazelrc
+
 ADD bazel.repos /ignition/bazel.repos
 
-WORKDIR /ignition
-RUN vcs import . < bazel.repos
+ADD setup_workspace.sh /ignition/setup_workspace.sh
+RUN /ignition/setup_workspace.sh
 
-RUN apt-get update -qq \
- && apt-get install -y -qq $(sort -u $(find . -iname 'packages.apt') | tr '\n' ' ') \
- && apt-get clean -qq
+ADD build_workspace.sh /ignition/build_workspace.sh
+CMD /ignition/build_workspace.sh
