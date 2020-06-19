@@ -8,4 +8,3 @@ vcs import . < bazel.repos
 apt-get update
 apt-get install -y -qq --no-install-recommends \
   $(sort -u $(find . -iname 'packages.apt') | tr '\n' ' ')
-apt-get clean -qq
