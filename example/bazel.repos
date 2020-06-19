@@ -1,4 +1,12 @@
 repositories:
+  ogre2:
+    type: git
+    url: https://github.com/osrf/ogre-2.1-release
+    version: bazel
+  sdformat:
+    type: git
+    url: https://github.com/osrf/sdformat
+    version: bazel
   ign_bazel:
     type: git
     url: https://github.com/ignitionrobotics/ign-bazel
