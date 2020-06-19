@@ -50,3 +50,15 @@ ruby_bundle(
     gemfile = "//apps/shopping:Gemfile",
     gemfile_lock = "//apps/shopping:Gemfile.lock",
 )
+
+new_local_repository(
+        name = "json",
+        path = "/usr/include/jsoncpp",
+        build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
+)
