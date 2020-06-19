@@ -96,6 +96,19 @@ def ign_physics_repositories():
         ],
     )
 
+def ign_fuel_tools_repositories():
+    native.new_local_repository(
+        name = "json",
+        path = "/usr/include/jsoncpp",
+        build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+    name = "headers",
+    hdrs = glob(["**/*.h"])
+)
+"""
+)
+
 def ignition_repositories():
   ogre_repositories()
   ign_bazel_repositories()
@@ -103,6 +116,7 @@ def ignition_repositories():
   ign_common_repositories()
   ign_msgs_repositories()
   ign_physics_repositories()
+  ign_fuel_tools_repositories()
 
 
 def _maybe(repo_rule, name, **kwargs):
