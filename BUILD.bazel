@@ -13,3 +13,9 @@ cc_library(
     includes = ["."],
     visibility = ["//visibility:public"],
 )
+
+py_binary(
+    name = "embed_sdf",
+    srcs = ["embed_sdf.py"],
+    visibility = ["//visibility:public"],
+)
