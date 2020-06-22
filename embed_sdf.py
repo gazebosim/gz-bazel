@@ -1,5 +1,6 @@
 # A re-implementation of upstream's sdf/embedSdf.rb tool in Python.
-
+# Copied from the Drake project:
+# https://github.com/RobotLocomotion/drake/blob/17423f8fb6f292b4af0b4cf3c6c0f157273af501/tools/workspace/sdformat/embed_sdf.py
 import sys
 
 assert __name__ == '__main__'
