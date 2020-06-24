@@ -1,5 +1,4 @@
 python
-ruby-ronn
 libprotoc-dev
 libprotobuf-dev
 protobuf-compiler

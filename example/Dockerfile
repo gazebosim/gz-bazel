@@ -9,7 +9,6 @@ RUN apt-get update -qq \
         sudo \
         wget \
         python3-pip \
-        ruby-ronn \
         libprotoc-dev \
         protobuf-compiler \
         uuid-dev \
