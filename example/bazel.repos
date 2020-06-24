@@ -10,7 +10,7 @@ repositories:
   ign_bazel:
     type: git
     url: https://github.com/ignitionrobotics/ign-bazel
-    version: bazel
+    version: master
   ign_common:
     type: git
     url: https://github.com/ignitionrobotics/ign-common
@@ -19,4 +19,11 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-math
     version: bazel
-
+  ign_transport:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-transport
+    version: jshep1/bazel-test-fixes
+  ign_msgs:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-msgs
+    version: bazel
