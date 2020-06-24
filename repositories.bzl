@@ -85,16 +85,6 @@ def ign_msgs_repositories():
 
 def ign_physics_repositories():
     eigen3()
-    _maybe(
-        http_archive,
-        name = "dart",
-        sha256 = "defd450c86ae38bc91db7e7722f9238b904dd94e3f04092a8a530a47c4d6f628",
-        build_file = "//ign_bazel/third_party:dart.BUILD",
-        strip_prefix = "dart-azeey-friction_per_shape_more_params",
-        urls = [
-            "https://github.com/azeey/dart/archive/azeey/friction_per_shape_more_params.tar.gz",
-        ],
-    )
 
 def ign_fuel_tools_repositories():
     native.new_local_repository(
