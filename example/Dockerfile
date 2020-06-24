@@ -9,6 +9,11 @@ RUN apt-get update -qq \
         sudo \
         wget \
         python3-pip \
+        ruby-ronn \
+        libprotoc-dev \
+        protobuf-compiler \
+        uuid-dev \
+        libzmq3-dev \
  && apt-get clean -qq
 
 RUN pip3 install vcstool
