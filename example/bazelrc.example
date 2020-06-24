@@ -1,2 +1,3 @@
 build --cxxopt=--std=c++17
+test --define enable_ifaddrs=true
 #build --compilation_mode=dbg

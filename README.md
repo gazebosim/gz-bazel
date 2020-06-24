@@ -18,7 +18,7 @@ It is best to use the [Bazel Instructions](https://docs.bazel.build/versions/mas
 For Ubuntu 18.04:
 
 ```
-sudo apt install cu<LeftMouse>rl gnupg
+sudo apt install curl gnupg
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
 echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 

@@ -9,9 +9,18 @@ RUN apt-get update -qq \
         sudo \
         wget \
         python3-pip \
+        libprotoc-dev \
+        libprotobuf-dev \
+        protobuf-compiler \
+        uuid-dev \
+        libzmq3-dev \
+        libsqlite3-dev \
+        g++-8 \
  && apt-get clean -qq
 
 RUN pip3 install vcstool
+RUN sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 \
+    --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
 
 # Add Bazel PPA
 RUN /bin/sh -c 'echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" > /etc/apt/sources.list.d/bazel-stable.list \
