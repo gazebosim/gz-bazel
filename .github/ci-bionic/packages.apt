@@ -5,3 +5,4 @@ libprotobuf-dev
 protobuf-compiler
 uuid-dev
 libzmq3-dev
+libsqlite3-dev

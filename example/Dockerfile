@@ -14,6 +14,7 @@ RUN apt-get update -qq \
         protobuf-compiler \
         uuid-dev \
         libzmq3-dev \
+        libsqlite3-dev \
  && apt-get clean -qq
 
 RUN pip3 install vcstool
