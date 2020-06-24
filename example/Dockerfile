@@ -10,6 +10,7 @@ RUN apt-get update -qq \
         wget \
         python3-pip \
         libprotoc-dev \
+        libprotobuf-dev \
         protobuf-compiler \
         uuid-dev \
         libzmq3-dev \
