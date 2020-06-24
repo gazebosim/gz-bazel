@@ -1,1 +1,7 @@
 python
+ruby-ronn
+libprotoc-dev
+libprotobuf-dev
+protobuf-compiler
+uuid-dev
+libzmq3-dev
