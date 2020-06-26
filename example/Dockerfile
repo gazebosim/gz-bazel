@@ -16,6 +16,17 @@ RUN apt-get update -qq \
         libzmq3-dev \
         libsqlite3-dev \
         g++-8 \
+        libzip-dev \
+        libjsoncpp-dev \
+        libglew-dev \
+        libfreeimage-dev \
+        freeglut3-dev \
+        libxmu-dev \
+        libxi-dev \
+        libyaml-dev \
+        libwebsockets-dev \
+        libswscale-dev \
+        libcurl4-openssl-dev \
  && apt-get clean -qq
 
 RUN pip3 install vcstool
