@@ -52,6 +52,9 @@ RUN apt-get update -qq \
         libavdevice-dev \
         libxaw7-dev \
         libxrandr-dev \
+        ruby \
+        ruby-ronn \
+        ruby-dev \
  && apt-get clean -qq
 
 RUN pip3 install vcstool
