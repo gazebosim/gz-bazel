@@ -121,7 +121,7 @@ def qt_cc_library(name, srcs, hdrs, normal_hdrs = [], deps = None, **kwargs):
         **kwargs
     )
 
-def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], qrc = "resources", qrc_files = [], deps = None, **kwargs):
+def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kwargs):
     """Compiles a QT library and generates the MOC for it.
     If a UI file is provided, then it is also compiled with UIC.
     Args:
@@ -132,12 +132,12 @@ def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], qrc = "resources"
       deps: cc_library dependencies for the library.
       kwargs: Any additional arguments are passed to the cc_library rule.
     """
-    qrc_file = qrc + "_qrc.qrc"
-    genqrc(name = qrc + "_qrc", files = qrc_files, qrc = qrc_file)
+    #qrc_file = qrc + "_qrc.qrc"
+    #genqrc(name = qrc + "_qrc", files = qrc_files, qrc = qrc_file)
 
     # every resource cc_library that is linked into the same binary needs a
     # unique 'name'.
-    rsrc_name = native.package_name().replace("/", "_") + "_" + qrc
+    # rsrc_name = native.package_name().replace("/", "_") + "_" + qrc
     '''
     outfile = qrc + "_gen.cpp"
     native.genrule(
