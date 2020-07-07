@@ -40,7 +40,7 @@ def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kw
             name = moc_name,
             srcs = [hdr],
             outs = [moc_name + ".cc"],
-            cmd = "moc $(location %s) -o $@ -f'%s'" %
+            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
                   (hdr, header_path),
         )
         _moc_srcs.append(":" + moc_name)
