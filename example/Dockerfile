@@ -55,6 +55,17 @@ RUN apt-get update -qq \
         ruby \
         ruby-ronn \
         ruby-dev \
+        qml-module-qt-labs-folderlistmodel \
+        qml-module-qt-labs-settings \
+        qml-module-qtquick2 \
+        qml-module-qtquick-controls \
+        qml-module-qtquick-controls2 \
+        qml-module-qtquick-dialogs \
+        qml-module-qtquick-layouts \
+        qml-module-qtqml-models2 \
+        qtbase5-dev \
+        qtdeclarative5-dev \
+        qtquickcontrols2-5-dev \
  && apt-get clean -qq
 
 RUN pip3 install vcstool
