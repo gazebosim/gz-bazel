@@ -43,13 +43,13 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-transport
     version: bazel
-  ogre2:
-    type: git
-    url: https://github.com/osrf/ogre-2.1-release
-    version: bazel
   dart:
     type: git
     url: https://github.com/azeey/dart
+    version: bazel
+  ogre2:
+    type: git
+    url: https://github.com/osrf/ogre-2.1-release
     version: bazel
   sdformat:
     type: git
