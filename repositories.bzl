@@ -99,6 +99,13 @@ cc_library(
 """
 )
 
+def ign_gui_repositories():
+    native.new_local_repository(
+        name = "qt",
+        build_file = "//ign_bazel/third_party:qt.BUILD",
+        path = "/usr/include/x86_64-linux-gnu/qt5/"
+    )
+
 def ignition_repositories():
   ogre_repositories()
   ign_bazel_repositories()
@@ -107,6 +114,7 @@ def ignition_repositories():
   ign_msgs_repositories()
   ign_physics_repositories()
   ign_fuel_tools_repositories()
+  ign_gui_repositories()
 
 
 def _maybe(repo_rule, name, **kwargs):

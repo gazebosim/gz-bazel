@@ -55,8 +55,3 @@ ruby_bundle(
     gemfile_lock = "//apps/shopping:Gemfile.lock",
 )
 
-new_local_repository(
-    name = "qt",
-    build_file = "//ign_bazel:qt.BUILD",
-    path = "/usr/include/x86_64-linux-gnu/qt5/"
-)
