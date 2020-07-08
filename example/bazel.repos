@@ -35,6 +35,10 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-rendering
     version: bazel
+  ign_sensors:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-sensors
+    version: bazel
   ign_tools:
     type: git
     url: https://github.com/ignitionrobotics/ign-tools
