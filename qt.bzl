@@ -20,6 +20,21 @@
 
 load("@rules_cc//cc:defs.bzl", "cc_binary")
 
+def qt_moc(hdrs):
+    _moc_srcs = []
+    for hdr in hdrs:
+        header_path = "%s" % (hdr.replace("//", "").replace(":","/")) if len(native.package_name()) > 0 else hdr
+        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
+        native.genrule(
+            name = moc_name,
+            srcs = [hdr],
+            outs = [moc_name + ".cc"],
+            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
+                  (hdr, header_path),
+        )
+        _moc_srcs.append(moc_name)
+    return _moc_srcs
+
 def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kwargs):
     """Compiles a QT library and generates the MOC for it.
     If a UI file is provided, then it is also compiled with UIC.
@@ -51,3 +66,40 @@ def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kw
         deps = deps,
         **kwargs
     )
+
+def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kwargs):
+    """Compiles a QT library and generates the MOC for it.
+    If a UI file is provided, then it is also compiled with UIC.
+    Args:
+      name: A name for the rule.
+      srcs: The cpp files to compile.
+      hdrs: The header files that the MOC compiles to src.
+      normal_hdrs: Headers which are not sources for generated code.
+      deps: cc_library dependencies for the library.
+      kwargs: Any additional arguments are passed to the cc_library rule.
+    """
+
+    _moc_srcs = []
+    for hdr in hdrs:
+        header_path = "%s" % (hdr.replace("//", "").replace(":","/")) if len(native.package_name()) > 0 else hdr
+        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
+        print(hdr, '/'.join(header_path.split('/')[1:]))
+
+        header_path = '/'.join(header_path.split('/')[1:])
+
+        native.genrule(
+            name = moc_name,
+            srcs = [hdr],
+            outs = [moc_name + ".cc"],
+            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
+                  (hdr, header_path),
+        )
+        _moc_srcs.append(":" + moc_name)
+    native.cc_library(
+        name = name,
+        srcs = srcs + _moc_srcs +  hdrs + normal_hdrs,
+        linkopts = linkopts,
+        deps = deps,
+        **kwargs
+    )
+
