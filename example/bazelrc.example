@@ -1,4 +1,3 @@
-build --cxxopt=--std=c++17
-test --define enable_ifaddrs=true
-test --test_env=DISPLAY
+build --cxxopt=--std=c++17 --compilation_mode=dbg
+test --define enable_ifaddrs=true --test_env=DISPLAY
 #build --compilation_mode=dbg
