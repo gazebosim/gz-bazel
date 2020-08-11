@@ -11,6 +11,10 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-fuel-tools
     version: bazel
+  ign_gazebo:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-gazebo
+    version: bazel
   ign_gui:
     type: git
     url: https://github.com/ignitionrobotics/ign-gui
