@@ -1,5 +1,12 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+def tinyxml2():
+    native.new_local_repository(
+        name = "tinyxml2",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:tinyxml2.BUILD",
+    )
+
 def freetype():
     native.new_local_repository(
         name = "freetype2",
@@ -82,6 +89,8 @@ def ign_msgs_repositories():
             "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
         ],
     )
+
+    tinyxml2()
 
 def ign_physics_repositories():
     eigen3()
