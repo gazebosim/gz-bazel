@@ -3,7 +3,6 @@
 # Copied from the Drake project
 # https://github.com/RobotLocomotion/drake/blob/17423f8fb6f292b4af0b4cf3c6c0f157273af501/tools/workspace/generate_file.bzl
 
-
 def _generate_file_impl(ctx):
     out = ctx.actions.declare_file(ctx.label.name)
     ctx.actions.write(out, ctx.attr.content, ctx.attr.is_executable)

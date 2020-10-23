@@ -23,7 +23,7 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 def qt_moc(hdrs):
     _moc_srcs = []
     for hdr in hdrs:
-        header_path = "%s" % (hdr.replace("//", "").replace(":","/")) if len(native.package_name()) > 0 else hdr
+        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
         moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
         native.genrule(
             name = moc_name,
@@ -49,7 +49,7 @@ def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kw
 
     _moc_srcs = []
     for hdr in hdrs:
-        header_path = "%s" % (hdr.replace("//", "").replace(":","/")) if len(native.package_name()) > 0 else hdr
+        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
         moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
         native.genrule(
             name = moc_name,
@@ -61,7 +61,7 @@ def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kw
         _moc_srcs.append(":" + moc_name)
     cc_binary(
         name = name,
-        srcs = srcs + _moc_srcs +  hdrs + normal_hdrs,
+        srcs = srcs + _moc_srcs + hdrs + normal_hdrs,
         linkopts = linkopts,
         deps = deps,
         **kwargs
@@ -81,11 +81,11 @@ def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **k
 
     _moc_srcs = []
     for hdr in hdrs:
-        header_path = "%s" % (hdr.replace("//", "").replace(":","/")) if len(native.package_name()) > 0 else hdr
+        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
         moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
-        print(hdr, '/'.join(header_path.split('/')[1:]))
+        print(hdr, "/".join(header_path.split("/")[1:]))
 
-        header_path = '/'.join(header_path.split('/')[1:])
+        header_path = "/".join(header_path.split("/")[1:])
 
         native.genrule(
             name = moc_name,
@@ -97,9 +97,8 @@ def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **k
         _moc_srcs.append(":" + moc_name)
     native.cc_library(
         name = name,
-        srcs = srcs + _moc_srcs +  hdrs + normal_hdrs,
+        srcs = srcs + _moc_srcs + hdrs + normal_hdrs,
         linkopts = linkopts,
         deps = deps,
         **kwargs
     )
-

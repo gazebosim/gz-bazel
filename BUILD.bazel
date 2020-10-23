@@ -8,8 +8,10 @@ py_binary(
 
 cc_library(
     name = "utilities",
-    srcs = ["ignition/utilities/SuppressWarning.hh",
-            "ignition/utilities/detail/SuppressWarning.hh"],
+    srcs = [
+        "ignition/utilities/SuppressWarning.hh",
+        "ignition/utilities/detail/SuppressWarning.hh",
+    ],
     includes = ["."],
     visibility = ["//visibility:public"],
 )
