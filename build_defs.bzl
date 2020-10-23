@@ -48,8 +48,6 @@ IGNITION_VISIBILITY = [
     "//experimental:__subpackages__",
 ]
 
-IGNITION_DESIGNATION = "dome"
-
 FEATURES = [
     "-parse_headers",
     "-use_header_modules",

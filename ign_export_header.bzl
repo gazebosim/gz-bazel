@@ -1,5 +1,5 @@
 load(
-    "//ign_bazel:generate_file.bzl",
+    ":generate_file.bzl",
     "generate_file",
 )
 

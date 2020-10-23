@@ -1,15 +1,18 @@
+licenses(["notice"])
+
+exports_files(["LICENSE"])
+
 load(
-    "//ign_bazel:cmake_configure_file.bzl",
+    "//ign_bazel:build_defs.bzl",
+    "FEATURES",
+    "IGNITION_ROOT",
+    "IGNITION_VISIBILITY",
     "cmake_configure_file",
-)
-load(
-    "//ign_bazel:generate_include_header.bzl",
+    "generate_file",
     "generate_include_header",
 )
-load(
-    "//ign_bazel:generate_file.bzl",
-    "generate_file",
+
+package(
+    default_visibility = IGNITION_VISIBILITY,
+    features = FEATURES,
 )
-
-package(default_visibility = ["//visibility:public"])
-

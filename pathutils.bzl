@@ -167,14 +167,7 @@ def output_path(ctx, input_file, strip_prefix, package_root = None):
         # Determine base path of invoking context.
         package_root = join_paths(ctx.label.workspace_root, ctx.label.package)
 
-    # Determine effective path by removing path of invoking context and any
-    # Bazel output-files path.
-    input_path = input_file.path
-    if input_file.is_source:
-        input_path = _remove_prefix(input_path, package_root)
-    else:
-        out_root = join_paths("bazel-out/*/*", package_root)
-        input_path = _remove_prefix(input_path, out_root)
+    input_path = input_file.short_path
 
     # Deal with possible case of file outside the package root.
     if input_path == None:
