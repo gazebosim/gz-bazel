@@ -1,14 +1,13 @@
 load(
-    "//ign_bazel:generate_file.bzl",
+    ":generate_file.bzl",
     "generate_file",
 )
 
-
 def ign_export_header(name, lib_name, export_base, visibility):
-  generate_file(
-      name = name,
-      visibility = visibility,
-      content = """
+    generate_file(
+        name = name,
+        visibility = visibility,
+        content = """
 /*
  * Copyright (C) 2017 Open Source Robotics Foundation
  *
@@ -65,4 +64,5 @@ def ign_export_header(name, lib_name, export_base, visibility):
 #endif
 
 #endif
-""".format(lib_name = lib_name, export_base = export_base))
+""".format(lib_name = lib_name, export_base = export_base),
+    )

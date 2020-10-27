@@ -1,17 +1,24 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+def tinyxml2():
+    native.new_local_repository(
+        name = "tinyxml2",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:tinyxml2.BUILD",
+    )
+
 def freetype():
     native.new_local_repository(
-      name = "freetype2",
-      path = "/usr/include/freetype2",
-      build_file_content = """
+        name = "freetype2",
+        path = "/usr/include/freetype2",
+        build_file_content = """
 package(default_visibility = ["//visibility:public"])
 cc_library(
     name = "headers",
     hdrs = glob(["**/*.h"])
 )
-"""
-)
+""",
+    )
 
 def eigen3():
     _maybe(
@@ -57,8 +64,8 @@ cc_library(
     name = "headers",
     hdrs = glob(["**/*.h"])
 )
-"""
-)
+""",
+    )
     native.new_local_repository(
         name = "glibconfig",
         path = "/usr/lib/x86_64-linux-gnu/glib-2.0/include",
@@ -68,7 +75,7 @@ cc_library(
     name = "headers",
     hdrs = glob(["**/*.h"])
 )
-"""
+""",
     )
 
 def ign_msgs_repositories():
@@ -83,6 +90,8 @@ def ign_msgs_repositories():
         ],
     )
 
+    tinyxml2()
+
 def ign_physics_repositories():
     eigen3()
 
@@ -96,26 +105,25 @@ cc_library(
     name = "headers",
     hdrs = glob(["**/*.h"])
 )
-"""
-)
+""",
+    )
 
 def ign_gui_repositories():
     native.new_local_repository(
         name = "qt",
         build_file = "//ign_bazel/third_party:qt.BUILD",
-        path = "/usr/include/x86_64-linux-gnu/qt5/"
+        path = "/usr/include/x86_64-linux-gnu/qt5/",
     )
 
 def ignition_repositories():
-  ogre_repositories()
-  ign_bazel_repositories()
-  ign_math_repositories()
-  ign_common_repositories()
-  ign_msgs_repositories()
-  ign_physics_repositories()
-  ign_fuel_tools_repositories()
-  ign_gui_repositories()
-
+    ogre_repositories()
+    ign_bazel_repositories()
+    ign_math_repositories()
+    ign_common_repositories()
+    ign_msgs_repositories()
+    ign_physics_repositories()
+    ign_fuel_tools_repositories()
+    ign_gui_repositories()
 
 def _maybe(repo_rule, name, **kwargs):
     if name not in native.existing_rules():

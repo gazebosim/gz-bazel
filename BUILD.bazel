@@ -1,21 +1,38 @@
-package(default_visibility = ["//visibility:public"])
+load(
+    ":build_defs.bzl",
+    "FEATURES",
+    "IGNITION_ROOT",
+    "IGNITION_VISIBILITY",
+)
+
+package(
+    default_visibility = IGNITION_VISIBILITY,
+    features = FEATURES,
+)
+
+licenses(["notice"])
+
+exports_files(["LICENSE"])
 
 py_binary(
     name = "cmake_configure_file",
     srcs = ["cmake_configure_file.py"],
-    visibility = ["//visibility:public"],
+    python_version = "PY3",
+    srcs_version = "PY2AND3",
 )
 
 cc_library(
     name = "utilities",
-    srcs = ["ignition/utilities/SuppressWarning.hh",
-            "ignition/utilities/detail/SuppressWarning.hh"],
+    srcs = [
+        "ignition/utilities/SuppressWarning.hh",
+        "ignition/utilities/detail/SuppressWarning.hh",
+    ],
     includes = ["."],
-    visibility = ["//visibility:public"],
 )
 
 py_binary(
     name = "embed_sdf",
     srcs = ["embed_sdf.py"],
-    visibility = ["//visibility:public"],
+    python_version = "PY3",
+    srcs_version = "PY2AND3",
 )
