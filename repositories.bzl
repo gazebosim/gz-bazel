@@ -1,5 +1,12 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+def ffmpeg():
+    native.new_local_repository(
+        name = "ffmpeg",
+        path = "/usr/include/x86_64-linux-gnu",
+        build_file = "//ign_bazel/third_party:ffmpeg.BUILD",
+    )
+
 def tinyxml2():
     native.new_local_repository(
         name = "tinyxml2",
@@ -11,14 +18,22 @@ def freetype():
     native.new_local_repository(
         name = "freetype2",
         path = "/usr/include/freetype2",
+        build_file = "//ign_bazel/third_party:freetype2.BUILD",
+    )
+
+def dl():
+    native.new_local_repository(
+        name = "dl",
+        path = "/usr/include",
         build_file_content = """
 package(default_visibility = ["//visibility:public"])
 cc_library(
-    name = "headers",
-    hdrs = glob(["**/*.h"])
+    name = "dl",
+    linkopts = ["-ldl"],
 )
-""",
+"""
     )
+
 
 def eigen3():
     _maybe(
@@ -55,6 +70,9 @@ def ign_math_repositories():
     eigen3()
 
 def ign_common_repositories():
+    dl()
+    ffmpeg()
+
     native.new_local_repository(
         name = "glib",
         path = "/usr/include/glib-2.0",
@@ -76,6 +94,12 @@ cc_library(
     hdrs = glob(["**/*.h"])
 )
 """,
+    )
+
+    native.new_local_repository(
+        name = "uuid",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:uuid.BUILD",
     )
 
 def ign_msgs_repositories():
