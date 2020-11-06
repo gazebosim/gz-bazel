@@ -21,6 +21,27 @@ def freetype():
         build_file = "//ign_bazel/third_party:freetype2.BUILD",
     )
 
+def freeimage():
+    native.new_local_repository(
+        name = "freeimage",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:freeimage.BUILD",
+    )
+
+def glib():
+    native.new_local_repository(
+        name = "glib",
+        path = "/usr",
+        build_file = "//ign_bazel/third_party:glib.BUILD",
+    )
+
+def gts():
+    native.new_local_repository(
+        name = "gts",
+        path = "/usr",
+        build_file = "//ign_bazel/third_party:gts.BUILD",
+    )
+
 def dl():
     native.new_local_repository(
         name = "dl",
@@ -34,6 +55,12 @@ cc_library(
 """
     )
 
+def uuid():
+    native.new_local_repository(
+        name = "uuid",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:uuid.BUILD",
+    )
 
 def eigen3():
     _maybe(
@@ -72,35 +99,11 @@ def ign_math_repositories():
 def ign_common_repositories():
     dl()
     ffmpeg()
+    freeimage()
+    glib()
+    gts()
+    uuid()
 
-    native.new_local_repository(
-        name = "glib",
-        path = "/usr/include/glib-2.0",
-        build_file_content = """
-package(default_visibility = ["//visibility:public"])
-cc_library(
-    name = "headers",
-    hdrs = glob(["**/*.h"])
-)
-""",
-    )
-    native.new_local_repository(
-        name = "glibconfig",
-        path = "/usr/lib/x86_64-linux-gnu/glib-2.0/include",
-        build_file_content = """
-package(default_visibility = ["//visibility:public"])
-cc_library(
-    name = "headers",
-    hdrs = glob(["**/*.h"])
-)
-""",
-    )
-
-    native.new_local_repository(
-        name = "uuid",
-        path = "/usr/include",
-        build_file = "//ign_bazel/third_party:uuid.BUILD",
-    )
 
 def ign_msgs_repositories():
     _maybe(
