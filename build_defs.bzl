@@ -48,7 +48,7 @@ IGNITION_VISIBILITY = [
     "//experimental:__subpackages__",
 ]
 
-FEATURES = [
+IGNITION_FEATURES = [
     "-parse_headers",
     "-use_header_modules",
     "-layering_check",

@@ -1,17 +1,38 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+def assimp():
+    native.new_local_repository(
+        name = "assimp",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:assimp.BUILD",
+    )
+
+def boost():
+    native.new_local_repository(
+        name = "boost",
+        path = "/usr/include/boost",
+        build_file = "//ign_bazel/third_party:boost.BUILD",
+    )
+
+def dl():
+    native.new_local_repository(
+        name = "dl",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:dl.BUILD",
+    )
+
+def fcl():
+    native.new_local_repository(
+        name = "fcl",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:fcl.BUILD",
+    )
+
 def ffmpeg():
     native.new_local_repository(
         name = "ffmpeg",
         path = "/usr/include/x86_64-linux-gnu",
         build_file = "//ign_bazel/third_party:ffmpeg.BUILD",
-    )
-
-def tinyxml2():
-    native.new_local_repository(
-        name = "tinyxml2",
-        path = "/usr/include",
-        build_file = "//ign_bazel/third_party:tinyxml2.BUILD",
     )
 
 def freetype():
@@ -28,6 +49,13 @@ def freeimage():
         build_file = "//ign_bazel/third_party:freeimage.BUILD",
     )
 
+def gl():
+    native.new_local_repository(
+        name = "gl",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:gl.BUILD",
+    )
+
 def glib():
     native.new_local_repository(
         name = "glib",
@@ -42,17 +70,39 @@ def gts():
         build_file = "//ign_bazel/third_party:gts.BUILD",
     )
 
-def dl():
+def nlopt():
     native.new_local_repository(
-        name = "dl",
+        name = "nlopt",
         path = "/usr/include",
-        build_file_content = """
-package(default_visibility = ["//visibility:public"])
-cc_library(
-    name = "dl",
-    linkopts = ["-ldl"],
-)
-"""
+        build_file = "//ign_bazel/third_party:nlopt.BUILD",
+    )
+
+def ode():
+    native.new_local_repository(
+        name = "ode",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:ode.BUILD",
+    )
+
+def osg():
+    native.new_local_repository(
+        name = "osg",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:osg.BUILD",
+    )
+
+def sqlite3():
+    native.new_local_repository(
+        name = "sqlite3",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:sqlite3.BUILD",
+    )
+
+def tinyxml2():
+    native.new_local_repository(
+        name = "tinyxml2",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:tinyxml2.BUILD",
     )
 
 def uuid():
@@ -60,6 +110,13 @@ def uuid():
         name = "uuid",
         path = "/usr/include",
         build_file = "//ign_bazel/third_party:uuid.BUILD",
+    )
+
+def zmq():
+    native.new_local_repository(
+        name = "zmq",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:zmq.BUILD",
     )
 
 def eigen3():
@@ -74,6 +131,15 @@ def eigen3():
             "https://bitbucket.org/eigen/eigen/get/f3a22f35b044.tar.gz",
         ],
     )
+
+def dart_repositories():
+    assimp()
+    boost()
+    fcl()
+    gl()
+    ode()
+    osg()
+    nlopt()
 
 def ogre_repositories():
     freetype()
@@ -104,7 +170,6 @@ def ign_common_repositories():
     gts()
     uuid()
 
-
 def ign_msgs_repositories():
     _maybe(
         http_archive,
@@ -121,6 +186,10 @@ def ign_msgs_repositories():
 
 def ign_physics_repositories():
     eigen3()
+
+def ign_transport_repositories():
+    sqlite3()
+    zmq()
 
 def ign_fuel_tools_repositories():
     native.new_local_repository(
@@ -143,11 +212,13 @@ def ign_gui_repositories():
     )
 
 def ignition_repositories():
+    dart_repositories()
     ogre_repositories()
     ign_bazel_repositories()
     ign_math_repositories()
     ign_common_repositories()
     ign_msgs_repositories()
+    ign_transport_repositories()
     ign_physics_repositories()
     ign_fuel_tools_repositories()
     ign_gui_repositories()

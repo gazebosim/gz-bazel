@@ -29,8 +29,11 @@ def ign_config_header(name, src, cmakelists, project_name, project_version):
             "PROJECT_PATCH_VERSION=%d" % PROJECT_PATCH,
             "PROJECT_VERSION=%d.%d" % (PROJECT_MAJOR, PROJECT_MINOR),
             "PROJECT_VERSION_FULL=%d.%d.%d" % (PROJECT_MAJOR, PROJECT_MINOR, PROJECT_PATCH),  # noqa
+            "PROJECT_NAME=%s" % PROJECT_NAME,
             "PROJECT_NAME_NO_VERSION=%s" % PROJECT_NAME,
             "IGN_DESIGNATION=%s" % IGN_DESIGNATION,
+            "IGN_DESIGNATION_UPPER=%s" % IGN_DESIGNATION.upper(),
+            "IGN_DESIGNATION_LOWER=%s" % IGN_DESIGNATION.lower(),
         ],
         visibility = ["//visibility:private"],
     )

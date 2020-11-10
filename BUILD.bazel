@@ -1,13 +1,13 @@
 load(
     ":build_defs.bzl",
-    "FEATURES",
+    "IGNITION_FEATURES",
     "IGNITION_ROOT",
     "IGNITION_VISIBILITY",
 )
 
 package(
     default_visibility = IGNITION_VISIBILITY,
-    features = FEATURES,
+    features = IGNITION_FEATURES,
 )
 
 licenses(["notice"])
