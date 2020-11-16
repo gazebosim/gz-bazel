@@ -163,7 +163,6 @@ def ign_math_repositories():
     eigen3()
 
 def ign_common_repositories():
-    dl()
     ffmpeg()
     freeimage()
     glib()

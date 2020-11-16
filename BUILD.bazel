@@ -23,7 +23,8 @@ py_binary(
 
 cc_library(
     name = "utilities",
-    srcs = [
+    hdrs = [
+        "ignition/utilities/ExtraTestMacros.hh",
         "ignition/utilities/SuppressWarning.hh",
         "ignition/utilities/detail/SuppressWarning.hh",
     ],
