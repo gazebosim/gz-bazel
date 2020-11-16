@@ -112,6 +112,13 @@ def uuid():
         build_file = "//ign_bazel/third_party:uuid.BUILD",
     )
 
+def X():
+    native.new_local_repository(
+        name = "X",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:X.BUILD",
+    )
+
 def zmq():
     native.new_local_repository(
         name = "zmq",
@@ -204,6 +211,13 @@ cc_library(
 """,
     )
 
+def ign_rendering_repositories():
+    native.new_local_repository(
+        name = "X",
+        build_file = "//ign_bazel/third_party:X.BUILD",
+        path = "/usr/include/",
+    )
+
 def ign_gui_repositories():
     native.new_local_repository(
         name = "qt",
@@ -218,6 +232,7 @@ def ignition_repositories():
     ign_math_repositories()
     ign_common_repositories()
     ign_msgs_repositories()
+    ign_rendering_repositories()
     ign_transport_repositories()
     ign_physics_repositories()
     ign_fuel_tools_repositories()
