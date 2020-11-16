@@ -14,13 +14,6 @@ def boost():
         build_file = "//ign_bazel/third_party:boost.BUILD",
     )
 
-def dl():
-    native.new_local_repository(
-        name = "dl",
-        path = "/usr/include",
-        build_file = "//ign_bazel/third_party:dl.BUILD",
-    )
-
 def fcl():
     native.new_local_repository(
         name = "fcl",
