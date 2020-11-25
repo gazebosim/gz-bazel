@@ -1,13 +1,13 @@
 load(
     ":build_defs.bzl",
-    "FEATURES",
+    "IGNITION_FEATURES",
     "IGNITION_ROOT",
     "IGNITION_VISIBILITY",
 )
 
 package(
     default_visibility = IGNITION_VISIBILITY,
-    features = FEATURES,
+    features = IGNITION_FEATURES,
 )
 
 licenses(["notice"])
@@ -23,8 +23,10 @@ py_binary(
 
 cc_library(
     name = "utilities",
-    srcs = [
+    hdrs = [
+        "ignition/utilities/ExtraTestMacros.hh",
         "ignition/utilities/SuppressWarning.hh",
+        "ignition/utilities/detail/ExtraTestMacros.hh",
         "ignition/utilities/detail/SuppressWarning.hh",
     ],
     includes = ["."],

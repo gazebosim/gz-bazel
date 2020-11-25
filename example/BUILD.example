@@ -4,15 +4,11 @@ exports_files(["LICENSE"])
 
 load(
     "//ign_bazel:build_defs.bzl",
-    "FEATURES",
-    "IGNITION_ROOT",
+    "IGNITION_FEATURES",
     "IGNITION_VISIBILITY",
-    "cmake_configure_file",
-    "generate_file",
-    "generate_include_header",
 )
 
 package(
     default_visibility = IGNITION_VISIBILITY,
-    features = FEATURES,
+    features = IGNITION_FEATURES,
 )
