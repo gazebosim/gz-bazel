@@ -26,6 +26,7 @@ cc_library(
     hdrs = [
         "ignition/utilities/ExtraTestMacros.hh",
         "ignition/utilities/SuppressWarning.hh",
+        "ignition/utilities/detail/ExtraTestMacros.hh",
         "ignition/utilities/detail/SuppressWarning.hh",
     ],
     includes = ["."],
