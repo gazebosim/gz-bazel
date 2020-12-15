@@ -18,7 +18,8 @@ rules_proto_toolchains()
 git_repository(
     name = "bazelruby_rules_ruby",
     remote = "https://github.com/bazelruby/rules_ruby.git",
-    branch = "develop"
+    commit = "6c025e38f0f030b75df2e321740eb31df575c391", 
+    shallow_since = "1596606275 -0700"
 )
 
 load(
