@@ -45,9 +45,9 @@ vcs import . < bazel.repos
 You can then install all necessary `apt` dependencies with the following:
 
 ```
-sudo apt-get update
-sudo apt-get install -y -qq --no-install-recommends \
-  $(sort -u $(find . -iname 'packages.apt') | tr '\n' ' ')
+sudo apt update
+sudo apt install -y -qq --no-install-recommends \
+  $(sort -u $(find . -iname 'packages-'$UBUNTU_VERSION'.apt' -o -iname 'packages.apt') | grep -Ev "libignition|libsdformat|ogre" | tr '\n' ' ')
 ```
 
 Finally, it is necessary to add a few files for `bazel`
