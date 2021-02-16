@@ -7,5 +7,8 @@ cc_library(
     linkopts = [
       "-ltinyxml2",
     ],
+    defines = [
+      "TINYXML2_MAJOR_VERSION=6",
+    ]
 )
 

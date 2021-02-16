@@ -57,12 +57,12 @@ repositories:
     version: bazel-transport9
   dart:
     type: git
-    url: https://github.com/azeey/dart
-    version: bazel-azeey
+    url: https://github.com/ignition-forks/dart
+    version: azeey/friction_per_shape_more_params
   ogre2:
     type: git
-    url: https://github.com/osrf/ogre-2.1-release
-    version: bazel
+    url: https://github.com/ignition-forks/ogre-2.1-release
+    version: master
   sdformat:
     type: git
     url: https://github.com/osrf/sdformat

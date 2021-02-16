@@ -30,6 +30,9 @@ def ign_config_header(name, src, cmakelists, project_name, project_version, **kw
         "IGN_DESIGNATION=%s" % IGN_DESIGNATION,
         "IGN_DESIGNATION_UPPER=%s" % IGN_DESIGNATION.upper(),
         "IGN_DESIGNATION_LOWER=%s" % IGN_DESIGNATION.lower(),
+        "PROJECT_BINARY_DIR=",
+        "PROJECT_SOURCE_DIR=",
+
     ] 
 
     if 'extra_defines' in kwargs:
