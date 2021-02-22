@@ -92,10 +92,15 @@ def sqlite3():
     )
 
 def tinyxml2():
-    native.new_local_repository(
+    _maybe(
+        http_archive,
         name = "tinyxml2",
-        path = "/usr/include",
         build_file = "//ign_bazel/third_party:tinyxml2.BUILD",
+        sha256 = "6ce574fbb46751842d23089485ae73d3db12c1b6639cda7721bf3a7ee862012c",
+        strip_prefix = "tinyxml2-8.0.0",
+        urls = [
+            "https://github.com/leethomason/tinyxml2/archive/8.0.0.tar.gz",
+        ],
     )
 
 def uuid():
