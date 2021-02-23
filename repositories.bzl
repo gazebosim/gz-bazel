@@ -14,6 +14,13 @@ def boost():
         build_file = "//ign_bazel/third_party:boost.BUILD",
     )
 
+def curl():
+    native.new_local_repository(
+        name = "curl",
+        path = "/usr/include/x86_64-linux-gnu",
+        build_file = "//ign_bazel/third_party:curl.BUILD",
+    )
+
 def fcl():
     native.new_local_repository(
         name = "fcl",
@@ -61,6 +68,13 @@ def gts():
         name = "gts",
         path = "/usr",
         build_file = "//ign_bazel/third_party:gts.BUILD",
+    )
+
+def json():
+    native.new_local_repository(
+        name = "json",
+        path = "/usr/include/jsoncpp/",
+        build_file = "//ign_bazel/third_party:json.BUILD",
     )
 
 def nlopt():
@@ -117,6 +131,20 @@ def X():
         build_file = "//ign_bazel/third_party:X.BUILD",
     )
 
+def yaml():
+    native.new_local_repository(
+        name = "yaml",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:yaml.BUILD",
+    )
+
+def libzip():
+    native.new_local_repository(
+        name = "zip",
+        path = "/usr/include",
+        build_file = "//ign_bazel/third_party:zip.BUILD",
+    )
+
 def zmq():
     native.new_local_repository(
         name = "zmq",
@@ -155,6 +183,7 @@ def ign_bazel_repositories():
         name = "rules_python",
         strip_prefix = "rules_python-master",
         urls = ["https://github.com/bazelbuild/rules_python/archive/master.zip"],
+        sha256 = "df99e5d609b660cfa2a630bcf31f8f482b3aeb2c6ba9b915bac0ba7745a6840d"
     )
 
     _maybe(
@@ -162,6 +191,7 @@ def ign_bazel_repositories():
         name = "gtest",
         strip_prefix = "googletest-master",
         urls = ["https://github.com/google/googletest/archive/master.zip"],
+        sha256 = "09013320eab47ffa40a30e1ca77e08f7452945abc60dac7edbbb797f43a1d114"
     )
 
 def ign_math_repositories():
@@ -178,11 +208,10 @@ def ign_msgs_repositories():
     _maybe(
         http_archive,
         name = "rules_proto",
-        sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
-        strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+        sha256 = "9fc210a34f0f9e7cc31598d109b5d069ef44911a82f507d5a88716db171615a8",
+        strip_prefix = "rules_proto-f7a30f6f80006b591fa7c437fe5a951eb10bcbcf",
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-            "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+            "https://github.com/bazelbuild/rules_proto/archive/f7a30f6f80006b591fa7c437fe5a951eb10bcbcf.tar.gz"
         ],
     )
 
@@ -196,17 +225,10 @@ def ign_transport_repositories():
     zmq()
 
 def ign_fuel_tools_repositories():
-    native.new_local_repository(
-        name = "json",
-        path = "/usr/include/jsoncpp",
-        build_file_content = """
-package(default_visibility = ["//visibility:public"])
-cc_library(
-    name = "headers",
-    hdrs = glob(["**/*.h"])
-)
-""",
-    )
+    curl()
+    json()
+    yaml()
+    libzip()
 
 def ign_rendering_repositories():
     native.new_local_repository(
