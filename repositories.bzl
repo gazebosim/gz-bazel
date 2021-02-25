@@ -160,8 +160,9 @@ def ign_bazel_repositories():
     _maybe(
         http_archive,
         name = "gtest",
-        strip_prefix = "googletest-master",
-        urls = ["https://github.com/google/googletest/archive/master.zip"],
+        sha256 = "9dc9157a9a1551ec7a7e43daea9a694a0bb5fb8bec81235d8a1e6ef64c716dcb",
+        strip_prefix = "googletest-release-1.10.0",
+        urls = ["https://github.com/google/googletest/archive/release-1.10.0.tar.gz"],
     )
 
 def ign_math_repositories():
