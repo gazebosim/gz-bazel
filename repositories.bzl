@@ -181,9 +181,8 @@ def ign_bazel_repositories():
     _maybe(
         http_archive,
         name = "rules_python",
-        strip_prefix = "rules_python-master",
-        urls = ["https://github.com/bazelbuild/rules_python/archive/master.zip"],
-        sha256 = "df99e5d609b660cfa2a630bcf31f8f482b3aeb2c6ba9b915bac0ba7745a6840d"
+        urls = ["https://github.com/bazelbuild/rules_python/releases/download/0.1.0/rules_python-0.1.0.tar.gz"],
+        sha256 = "b6d46438523a3ec0f3cead544190ee13223a52f6a6765a29eae7b7cc24cc83a0",
     )
 
     _maybe(
