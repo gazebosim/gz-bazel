@@ -83,8 +83,6 @@ def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **k
     for hdr in hdrs:
         header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
         moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
-        print(hdr, "/".join(header_path.split("/")[1:]))
-
         header_path = "/".join(header_path.split("/")[1:])
 
         native.genrule(
