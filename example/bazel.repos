@@ -55,10 +55,14 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-transport
     version: bazel-transport9
+  ign_utils:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-utils
+    version: main 
   dart:
     type: git
     url: https://github.com/ignition-forks/dart
-    version: azeey/friction_per_shape_more_params
+    version: add_ci_deps 
   ogre2:
     type: git
     url: https://github.com/ignition-forks/ogre-2.1-release
