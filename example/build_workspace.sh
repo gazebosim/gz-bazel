@@ -5,10 +5,14 @@ set -o verbose
 
 vcs pull
 
-apt-get update
-apt-get install -y -qq --no-install-recommends \
-  $(sort -u $(find . -iname 'packages.apt') | tr '\n' ' ')
-apt-get clean -qq
+EXCLUDE_APT="libignition|libsdformat|libogre|dart"
+UBUNTU_VERSION=`lsb_release -cs`
+ALL_PACKAGES=$( \
+  sort -u $(find . -iname 'packages-'$UBUNTU_VERSION'.apt' -o -iname 'packages.apt') | grep -Ev $EXCLUDE_APT | tr '\n' ' ')
+
+DEBIAN_FRONTEND=noninteractive \
+apt-get update && apt-get install --no-install-recommends --quiet --yes $ALL_PACKAGES
+
 
 bazel build //...
 bazel test //...

@@ -34,25 +34,3 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 bazel_skylib_workspace()
 
 rules_ruby_select_sdk(version = "2.7.1")
-
-load(
-    "@bazelruby_rules_ruby//ruby:defs.bzl",
-    "ruby_bundle",
-)
-
-ruby_bundle(
-    name = "bundle",
-    excludes = {
-        "mini_portile": ["test/**/*"],
-    },
-    gemfile = "//:Gemfile",
-    gemfile_lock = "//:Gemfile.lock",
-)
-
-# You can specify more than one bundle in the WORKSPACE file
-ruby_bundle(
-    name = "bundle_app_shopping",
-    gemfile = "//apps/shopping:Gemfile",
-    gemfile_lock = "//apps/shopping:Gemfile.lock",
-)
-

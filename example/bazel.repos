@@ -6,7 +6,7 @@ repositories:
   ign_common:
     type: git
     url: https://github.com/ignitionrobotics/ign-common
-    version: bazel-common3
+    version: ign-common3
   ign_fuel_tools:
     type: git
     url: https://github.com/ignitionrobotics/ign-fuel-tools
@@ -62,7 +62,7 @@ repositories:
   dart:
     type: git
     url: https://github.com/ignition-forks/dart
-    version: add_ci_deps 
+    version: release-6.10 
   ogre2:
     type: git
     url: https://github.com/ignition-forks/ogre-2.1-release

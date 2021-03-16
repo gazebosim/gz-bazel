@@ -42,9 +42,6 @@ RUN apt-get update -qq \
         libnlopt-dev \
         libfcl-dev \
         libopenscenegraph-dev \
-        libdart6-collision-ode-dev \
-        libdart6-dev \
-        libdart6-utils-urdf-dev \
         libfreetype6-dev \
         libgts-dev \
         libavcodec-dev \
