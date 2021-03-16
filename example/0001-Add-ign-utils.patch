@@ -1,0 +1,279 @@
+From e79de9ed7b60fd6f648d936d38fd90059d43fa32 Mon Sep 17 00:00:00 2001
+From: Michael Carroll <michael@openrobotics.org>
+Date: Tue, 9 Mar 2021 11:14:57 -0600
+Subject: [PATCH] Add ign-utils
+
+Signed-off-by: Michael Carroll <michael@openrobotics.org>
+---
+ .../ci/{packages.apt => packages-focal.apt}   |  0
+ build_defs.bzl                                |  4 +-
+ example/Dockerfile                            | 12 +--
+ example/bazel.repos                           | 10 +-
+ example/build_workspace.sh                    | 10 +-
+ example/setup_workspace.sh                    | 11 ++-
+ qt.bzl                                        | 94 ++++++++-----------
+ 7 files changed, 67 insertions(+), 74 deletions(-)
+ rename .github/ci/{packages.apt => packages-focal.apt} (100%)
+
+diff --git a/.github/ci/packages.apt b/.github/ci/packages-focal.apt
+similarity index 100%
+rename from .github/ci/packages.apt
+rename to .github/ci/packages-focal.apt
+diff --git a/build_defs.bzl b/build_defs.bzl
+index 6b7e8b4..893f359 100644
+--- a/build_defs.bzl
++++ b/build_defs.bzl
+@@ -28,7 +28,7 @@ load(
+ )
+ load(
+     "qt.bzl",
+-    _qt_cc_binary = "qt_cc_binary",
++    _qt_rcc = "qt_rcc",
+     _qt_cc_library = "qt_cc_library",
+ )
+ 
+@@ -38,7 +38,7 @@ generate_file = _generate_file
+ ign_config_header = _ign_config_header
+ ign_export_header = _ign_export_header
+ generate_yaml = _generate_yaml
+-qt_cc_binary = _qt_cc_binary
++qt_rcc = _qt_rcc
+ qt_cc_library = _qt_cc_library
+ 
+ IGNITION_ROOT = "//"
+diff --git a/example/Dockerfile b/example/Dockerfile
+index ec425df..bc10c22 100644
+--- a/example/Dockerfile
++++ b/example/Dockerfile
+@@ -9,12 +9,11 @@ RUN apt-get update -qq \
+         wget \
+         python3-pip \
+         python-pip \
+-        lsb-release \
+- && apt-get clean -qq
++        lsb-release
+ 
+-RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+-RUN wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+-RUN apt-get update
++# RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
++# RUN wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
++# RUN apt-get update
+ 
+ # Common tools
+ RUN apt-get update -qq \
+@@ -42,9 +41,6 @@ RUN apt-get update -qq \
+         libnlopt-dev \
+         libfcl-dev \
+         libopenscenegraph-dev \
+-        libdart6-collision-ode-dev \
+-        libdart6-dev \
+-        libdart6-utils-urdf-dev \
+         libfreetype6-dev \
+         libgts-dev \
+         libavcodec-dev \
+diff --git a/example/bazel.repos b/example/bazel.repos
+index 8bbf041..2361236 100644
+--- a/example/bazel.repos
++++ b/example/bazel.repos
+@@ -2,11 +2,11 @@ repositories:
+   ign_bazel:
+     type: git
+     url: https://github.com/ignitionrobotics/ign-bazel
+-    version: master
++    version: focal_updates
+   ign_common:
+     type: git
+     url: https://github.com/ignitionrobotics/ign-common
+-    version: bazel-common3
++    version: ign-common3
+   ign_fuel_tools:
+     type: git
+     url: https://github.com/ignitionrobotics/ign-fuel-tools
+@@ -55,10 +55,14 @@ repositories:
+     type: git
+     url: https://github.com/ignitionrobotics/ign-transport
+     version: bazel-transport9
++  ign_utils:
++    type: git
++    url: https://github.com/ignitionrobotics/ign-utils
++    version: main 
+   dart:
+     type: git
+     url: https://github.com/ignition-forks/dart
+-    version: azeey/friction_per_shape_more_params
++    version: release-6.10
+   ogre2:
+     type: git
+     url: https://github.com/ignition-forks/ogre-2.1-release
+diff --git a/example/build_workspace.sh b/example/build_workspace.sh
+index 4e5bc40..c1d3ad7 100755
+--- a/example/build_workspace.sh
++++ b/example/build_workspace.sh
+@@ -5,9 +5,13 @@ set -o verbose
+ 
+ vcs pull
+ 
+-apt-get update
+-apt-get install -y -qq --no-install-recommends \
+-  $(sort -u $(find . -iname 'packages.apt') | tr '\n' ' ')
++EXCLUDE_APT="libignition|libsdformat|libogre"
++UBUNTU_VERSION=`lsb_release -cs`
++ALL_PACKAGES=$( \
++  sort -u $(find . -iname 'packages-'$UBUNTU_VERSION'.apt' -o -iname 'packages.apt') | grep -Ev $EXCLUDE_APT | tr '\n' ' ')
++
++DEBIAN_FRONTEND=noninteractive \
++apt-get update && apt-get install --no-install-recommends --quiet --yes $ALL_PACKAGES
+ apt-get clean -qq
+ 
+ bazel build //...
+diff --git a/example/setup_workspace.sh b/example/setup_workspace.sh
+index 80c7b24..32f8c22 100755
+--- a/example/setup_workspace.sh
++++ b/example/setup_workspace.sh
+@@ -5,6 +5,11 @@ set -o verbose
+ 
+ vcs import . < bazel.repos
+ 
+-apt-get update
+-apt-get install -y -qq --no-install-recommends \
+-  $(sort -u $(find . -iname 'packages.apt') | tr '\n' ' ')
++EXCLUDE_APT="libignition|libsdformat|libogre"
++UBUNTU_VERSION=`lsb_release -cs`
++ALL_PACKAGES=$( \
++  sort -u $(find . -iname 'packages-'$UBUNTU_VERSION'.apt' -o -iname 'packages.apt') | grep -Ev $EXCLUDE_APT | tr '\n' ' ')
++
++DEBIAN_FRONTEND=noninteractive \
++apt-get update && apt-get install --no-install-recommends --quiet --yes $ALL_PACKAGES
++apt-get clean -qq
+diff --git a/qt.bzl b/qt.bzl
+index 0ec734c..b996428 100644
+--- a/qt.bzl
++++ b/qt.bzl
+@@ -18,58 +18,45 @@
+ # Copied from
+ # https://github.com/justbuchanan/bazel_rules_qt
+ 
+-load("@rules_cc//cc:defs.bzl", "cc_binary")
++load("@rules_cc//cc:defs.bzl", "cc_library")
+ 
+-def qt_moc(hdrs):
+-    _moc_srcs = []
+-    for hdr in hdrs:
+-        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
+-        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
+-        native.genrule(
+-            name = moc_name,
+-            srcs = [hdr],
+-            outs = [moc_name + ".cc"],
+-            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
+-                  (hdr, header_path),
+-        )
+-        _moc_srcs.append(moc_name)
+-    return _moc_srcs
+-
+-def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kwargs):
+-    """Compiles a QT library and generates the MOC for it.
+-    If a UI file is provided, then it is also compiled with UIC.
+-    Args:
+-      name: A name for the rule.
+-      srcs: The cpp files to compile.
+-      hdrs: The header files that the MOC compiles to src.
+-      normal_hdrs: Headers which are not sources for generated code.
+-      deps: cc_library dependencies for the library.
+-      kwargs: Any additional arguments are passed to the cc_library rule.
+-    """
++def _qt_rcc(ctx):
++    # Symlink QRC file
++    qrc_file = (ctx.file.qrc, ctx.actions.declare_file(ctx.file.qrc.path))
++    ctx.actions.symlink(
++        output = qrc_file[1],
++        target_file = qrc_file[0],
++    )
+ 
+-    _moc_srcs = []
+-    for hdr in hdrs:
+-        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
+-        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
+-        native.genrule(
+-            name = moc_name,
+-            srcs = [hdr],
+-            outs = [moc_name + ".cc"],
+-            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
+-                  (hdr, header_path),
++    # Symlink resources
++    resource_files = [(f, ctx.actions.declare_file(f.path)) for f in ctx.files.files]
++    for target_file, output in resource_files:
++        ctx.actions.symlink(
++            output = output,
++            target_file = target_file,
+         )
+-        _moc_srcs.append(":" + moc_name)
+-    cc_binary(
+-        name = name,
+-        srcs = srcs + _moc_srcs + hdrs + normal_hdrs,
+-        linkopts = linkopts,
+-        deps = deps,
+-        **kwargs
++
++    args = ["--name", ctx.attr.resource_name, "--output", ctx.outputs.cpp.path, qrc_file[1].path]
++    ctx.actions.run(
++        inputs = [resource for _, resource in resource_files] + [qrc_file[1]],
++        outputs = [ctx.outputs.cpp],
++        arguments = args,
++        executable = "rcc",
+     )
++    return [OutputGroupInfo(cpp = depset([ctx.outputs.cpp]))]
++
++qt_rcc = rule(
++    implementation = _qt_rcc,
++    attrs = {
++        "resource_name": attr.string(),
++        "files": attr.label_list(allow_files = True, mandatory = False),
++        "qrc": attr.label(allow_single_file = True, mandatory = True),
++        "cpp": attr.output(),
++    },
++)
+ 
+-def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kwargs):
++def qt_cc_library(name, srcs, hdrs, normal_hdrs = [], deps = None, **kwargs):
+     """Compiles a QT library and generates the MOC for it.
+-    If a UI file is provided, then it is also compiled with UIC.
+     Args:
+       name: A name for the rule.
+       srcs: The cpp files to compile.
+@@ -78,25 +65,22 @@ def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **k
+       deps: cc_library dependencies for the library.
+       kwargs: Any additional arguments are passed to the cc_library rule.
+     """
+-
+     _moc_srcs = []
+     for hdr in hdrs:
+-        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
+-        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
+-        header_path = "/".join(header_path.split("/")[1:])
+-
++        header_path = "%s/%s" % (native.package_name(), hdr) if len(native.package_name()) > 0 else hdr
++        moc_name = "%s_moc" % hdr.replace(".", "_")
+         native.genrule(
+             name = moc_name,
+             srcs = [hdr],
+             outs = [moc_name + ".cc"],
+-            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
++            cmd = "moc $(location %s) -o $@ -f'%s'" %
+                   (hdr, header_path),
+         )
+         _moc_srcs.append(":" + moc_name)
+-    native.cc_library(
++    cc_library(
+         name = name,
+-        srcs = srcs + _moc_srcs + hdrs + normal_hdrs,
+-        linkopts = linkopts,
++        srcs = srcs + _moc_srcs,
++        hdrs = hdrs + normal_hdrs,
+         deps = deps,
+         **kwargs
+     )
+-- 
+2.25.1
+

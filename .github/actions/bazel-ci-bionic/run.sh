@@ -18,9 +18,6 @@ apt -y install \
   wget
 
 cd "$GITHUB_WORKSPACE"
-SYSTEM_VERSION=`lsb_release -cs`
-SOURCE_DEPENDENCIES="`pwd`/.github/ci/dependencies.yaml"
-SOURCE_DEPENDENCIES_VERSIONED="`pwd`/.github/ci-$SYSTEM_VERSION/dependencies.yaml"
 echo ::endgroup::
 
 echo ::group::Install tools: pip
@@ -42,8 +39,11 @@ vcs import . < /github/workspace/.github/ci/bazel.repos
 cp -R /github/workspace ./ign_bazel
 
 echo ::group::Install dependencies from binaries
-apt -y install \
-  $(sort -u $(find . -iname 'packages-'$SYSTEM_VERSION'.apt' -o -iname 'packages.apt') | tr '\n' ' ')
+EXCLUDE_APT="libignition|libsdformat|libogre|dart"
+UBUNTU_VERSION=`lsb_release -cs`
+ALL_PACKAGES=$( \
+  sort -u $(find . -iname 'packages-'$UBUNTU_VERSION'.apt' -o -iname 'packages.apt') | grep -Ev $EXCLUDE_APT | tr '\n' ' ')
+apt-get install --no-install-recommends --quiet --yes $ALL_PACKAGES
 echo ::endgroup::
 
 ln -sf ./ign_bazel/example/WORKSPACE.example ./WORKSPACE
