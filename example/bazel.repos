@@ -11,6 +11,11 @@ repositories:
     type: git
     url: https://github.com/osrf/sdformat
     version: bazel-sdf11 
+  ign_msgs:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-msgs
+    version: bazel-msgs7
+
   ign_fuel_tools:
     type: git
     url: https://github.com/ignitionrobotics/ign-fuel-tools
@@ -31,10 +36,6 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-math
     version: ign-math6
-  ign_msgs:
-    type: git
-    url: https://github.com/ignitionrobotics/ign-msgs
-    version: ign-msgs7
   ign_physics:
     type: git
     url: https://github.com/ignitionrobotics/ign-physics
