@@ -3,6 +3,10 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-bazel
     version: edifice-devel 
+  ign_math:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-math
+    version: ign-math6
   ign_common:
     type: git
     url: https://github.com/ignitionrobotics/ign-common
@@ -15,6 +19,14 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-msgs
     version: bazel-msgs7
+  ign_plugin:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-plugin
+    version: bazel-plugin1
+  ign_utils:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-utils
+    version: bazel-utils1 
 
   ign_fuel_tools:
     type: git
@@ -32,18 +44,10 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-launch
     version: ign-launch4
-  ign_math:
-    type: git
-    url: https://github.com/ignitionrobotics/ign-math
-    version: ign-math6
   ign_physics:
     type: git
     url: https://github.com/ignitionrobotics/ign-physics
     version: ign-physics4
-  ign_plugin:
-    type: git
-    url: https://github.com/ignitionrobotics/ign-plugin
-    version: bazel-plugin1
   ign_rendering:
     type: git
     url: https://github.com/ignitionrobotics/ign-rendering
@@ -60,10 +64,6 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-transport
     version: ign-transport10
-  ign_utils:
-    type: git
-    url: https://github.com/ignitionrobotics/ign-utils
-    version: ign-utils1 
   dart:
     type: git
     url: https://github.com/ignition-forks/dart
