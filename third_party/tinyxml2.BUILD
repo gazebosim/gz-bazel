@@ -5,5 +5,8 @@ cc_library(
     hdrs = ["tinyxml2.h"],
     srcs = ["tinyxml2.cpp"],
     includes = ["."],
+    defines = [
+      "TINYXML2_MAJOR_VERSION_GE_6=1"
+    ]
 )
 

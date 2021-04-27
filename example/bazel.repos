@@ -2,39 +2,43 @@ repositories:
   ign_bazel:
     type: git
     url: https://github.com/ignitionrobotics/ign-bazel
-    version: master
+    version: edifice-devel 
   ign_common:
     type: git
     url: https://github.com/ignitionrobotics/ign-common
-    version: ign-common3
+    version: bazel-common4
+  sdformat:
+    type: git
+    url: https://github.com/osrf/sdformat
+    version: bazel-sdf11 
   ign_fuel_tools:
     type: git
     url: https://github.com/ignitionrobotics/ign-fuel-tools
-    version: bazel-fuel-tools5
+    version: ign-fuel-tools6
   ign_gazebo:
     type: git
     url: https://github.com/ignitionrobotics/ign-gazebo
-    version: bazel-gazebo4
+    version: ign-gazebo5
   ign_gui:
     type: git
     url: https://github.com/ignitionrobotics/ign-gui
-    version: bazel-gui4
+    version: ign-gui5
   ign_launch:
     type: git
     url: https://github.com/ignitionrobotics/ign-launch
-    version: bazel-launch3
+    version: ign-launch4
   ign_math:
     type: git
     url: https://github.com/ignitionrobotics/ign-math
-    version: bazel-math6
+    version: ign-math6
   ign_msgs:
     type: git
     url: https://github.com/ignitionrobotics/ign-msgs
-    version: bazel-msgs6
+    version: ign-msgs7
   ign_physics:
     type: git
     url: https://github.com/ignitionrobotics/ign-physics
-    version: bazel-physics3
+    version: ign-physics4
   ign_plugin:
     type: git
     url: https://github.com/ignitionrobotics/ign-plugin
@@ -42,11 +46,11 @@ repositories:
   ign_rendering:
     type: git
     url: https://github.com/ignitionrobotics/ign-rendering
-    version: bazel-rendering4
+    version: ign-rendering4
   ign_sensors:
     type: git
     url: https://github.com/ignitionrobotics/ign-sensors
-    version: bazel-sensors4
+    version: ign-sensors5
   ign_tools:
     type: git
     url: https://github.com/ignitionrobotics/ign-tools
@@ -54,11 +58,11 @@ repositories:
   ign_transport:
     type: git
     url: https://github.com/ignitionrobotics/ign-transport
-    version: bazel-transport9
+    version: ign-transport10
   ign_utils:
     type: git
     url: https://github.com/ignitionrobotics/ign-utils
-    version: main 
+    version: ign-utils1 
   dart:
     type: git
     url: https://github.com/ignition-forks/dart
@@ -67,7 +71,3 @@ repositories:
     type: git
     url: https://github.com/ignition-forks/ogre-2.1-release
     version: master
-  sdformat:
-    type: git
-    url: https://github.com/osrf/sdformat
-    version: bazel-sdf10
