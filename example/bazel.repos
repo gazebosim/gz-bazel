@@ -70,5 +70,5 @@ repositories:
     version: release-6.10 
   ogre2:
     type: git
-    url: https://github.com/ignition-forks/ogre-2.1-release
-    version: master
+    url: https://github.com/ignition-forks/ogre-2.2-release
+    version: bazel-ogre22 
