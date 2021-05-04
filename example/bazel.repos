@@ -27,6 +27,10 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-utils
     version: bazel-utils1 
+  dart:
+    type: git
+    url: https://github.com/ignition-forks/dart
+    version: fix_bazel 
 
   ign_fuel_tools:
     type: git
@@ -64,10 +68,6 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-transport
     version: ign-transport10
-  dart:
-    type: git
-    url: https://github.com/ignition-forks/dart
-    version: release-6.10 
   ogre2:
     type: git
     url: https://github.com/ignition-forks/ogre-2.2-release
