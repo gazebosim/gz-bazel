@@ -14,6 +14,13 @@ def boost():
         build_file = "//ign_bazel/third_party:boost.BUILD",
     )
 
+def bullet():
+    native.new_local_repository(
+        name = "bullet",
+        path = "/usr/include/bullet",
+        build_file = "//ign_bazel/third_party:bullet.BUILD",
+    )
+
 def curl():
     native.new_local_repository(
         name = "curl",
@@ -168,6 +175,7 @@ def eigen3():
 def dart_repositories():
     assimp()
     boost()
+    bullet()
     fcl()
     gl()
     ode()

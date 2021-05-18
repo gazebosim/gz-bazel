@@ -15,3 +15,9 @@ cc_library(
     linkopts = ["-lglut"],
 )
 
+cc_library(
+    name = "EGL",
+    linkopts = ["-lEGL"],
+)
+
+
