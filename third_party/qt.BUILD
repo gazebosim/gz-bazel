@@ -34,6 +34,7 @@ cc_library(
     includes = [".", "QtQuickControls2"],
     linkopts = [
         "-lQt5Quick",
+        "-lQt5QuickControls2",
     ],
     deps = [
         ":qt_gui",

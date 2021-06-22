@@ -15,61 +15,86 @@
 # limitations under the License.
 #
 
-# Copied from
-# https://github.com/justbuchanan/bazel_rules_qt
+load("@rules_cc//cc:defs.bzl", "cc_library")
 
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+def qt_ui_library(name, ui, deps, **kwargs):
+    """Compiles a QT UI file and makes a library for it.
 
-def qt_moc(hdrs):
-    _moc_srcs = []
-    for hdr in hdrs:
-        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
-        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
-        native.genrule(
-            name = moc_name,
-            srcs = [hdr],
-            outs = [moc_name + ".cc"],
-            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
-                  (hdr, header_path),
-        )
-        _moc_srcs.append(moc_name)
-    return _moc_srcs
-
-def qt_cc_binary(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kwargs):
-    """Compiles a QT library and generates the MOC for it.
-    If a UI file is provided, then it is also compiled with UIC.
     Args:
       name: A name for the rule.
-      srcs: The cpp files to compile.
-      hdrs: The header files that the MOC compiles to src.
-      normal_hdrs: Headers which are not sources for generated code.
+      src: The ui file to compile.
       deps: cc_library dependencies for the library.
-      kwargs: Any additional arguments are passed to the cc_library rule.
     """
-
-    _moc_srcs = []
-    for hdr in hdrs:
-        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
-        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
-        native.genrule(
-            name = moc_name,
-            srcs = [hdr],
-            outs = [moc_name + ".cc"],
-            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
-                  (hdr, header_path),
-        )
-        _moc_srcs.append(":" + moc_name)
-    cc_binary(
+    native.genrule(
+        name = "%s_uic" % name,
+        srcs = [ui],
+        outs = ["ui_%s.h" % ui.split(".")[0]],
+        cmd = "uic $(locations %s) -o $@" % ui,
+    )
+    cc_library(
         name = name,
-        srcs = srcs + _moc_srcs + hdrs + normal_hdrs,
-        linkopts = linkopts,
+        hdrs = [":%s_uic" % name],
         deps = deps,
         **kwargs
     )
 
-def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **kwargs):
+def _qt_rcc(ctx):
+    # Symlink QRC file
+    qrc_file = (ctx.file.qrc, ctx.actions.declare_file(ctx.file.qrc.path))
+    ctx.actions.symlink(
+        output = qrc_file[1],
+        target_file = qrc_file[0],
+    )
+
+    # Symlink resources
+    resource_files = [(f, ctx.actions.declare_file(f.path)) for f in ctx.files.files]
+    for target_file, output in resource_files:
+        ctx.actions.symlink(
+            output = output,
+            target_file = target_file,
+         )
+
+    args = ["--name", ctx.attr.resource_name, "--output", ctx.outputs.cpp.path, qrc_file[1].path]
+    ctx.actions.run(
+        inputs = [resource for _, resource in resource_files] + [qrc_file[1]],
+        outputs = [ctx.outputs.cpp],
+        arguments = args,
+        executable = "rcc",
+     )
+    return [OutputGroupInfo(cpp = depset([ctx.outputs.cpp]))]
+
+qt_rcc = rule(
+    implementation = _qt_rcc,
+    attrs = {
+        "resource_name": attr.string(),
+        "files": attr.label_list(allow_files = True, mandatory = False),
+        "qrc": attr.label(allow_single_file = True, mandatory = True),
+        "cpp": attr.output(),
+    },
+)
+
+def qt_resource(name, qrc_file, files, **kwargs):
+
+    outfile = name + "_gen.cpp"
+
+    qt_rcc(
+        name = name + "_gen",
+        resource_name = name,
+        files = files,
+        qrc = qrc_file,
+        cpp = outfile,
+    )
+
+    cc_library(
+        name = name,
+        srcs = [outfile],
+        alwayslink = 1,
+        **kwargs
+    )
+
+def qt_cc_library(name, srcs, hdrs, normal_hdrs = [], deps = None, **kwargs):
     """Compiles a QT library and generates the MOC for it.
-    If a UI file is provided, then it is also compiled with UIC.
+
     Args:
       name: A name for the rule.
       srcs: The cpp files to compile.
@@ -78,25 +103,22 @@ def qt_cc_library(name, srcs, hdrs, linkopts, normal_hdrs = [], deps = None, **k
       deps: cc_library dependencies for the library.
       kwargs: Any additional arguments are passed to the cc_library rule.
     """
-
     _moc_srcs = []
     for hdr in hdrs:
-        header_path = "%s" % (hdr.replace("//", "").replace(":", "/")) if len(native.package_name()) > 0 else hdr
-        moc_name = "%s_moc" % hdr.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
-        header_path = "/".join(header_path.split("/")[1:])
-
+        header_path = "%s/%s" % (native.package_name(), hdr) if len(native.package_name()) > 0 else hdr
+        moc_name = "%s_moc" % hdr.replace(".", "_")
         native.genrule(
             name = moc_name,
             srcs = [hdr],
             outs = [moc_name + ".cc"],
-            cmd = "qtchooser -qt=5 -run-tool=moc $(location %s) -o $@ -f'%s'" %
+            cmd = "moc $(location %s) -o $@ -f'%s'" %
                   (hdr, header_path),
         )
         _moc_srcs.append(":" + moc_name)
-    native.cc_library(
+    cc_library(
         name = name,
-        srcs = srcs + _moc_srcs + hdrs + normal_hdrs,
-        linkopts = linkopts,
+        srcs = srcs + _moc_srcs,
+        hdrs = hdrs + normal_hdrs,
         deps = deps,
         **kwargs
     )

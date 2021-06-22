@@ -28,8 +28,9 @@ load(
 )
 load(
     "qt.bzl",
-    _qt_cc_binary = "qt_cc_binary",
+    _qt_ui_library = "qt_ui_library",
     _qt_cc_library = "qt_cc_library",
+    _qt_resource = "qt_resource",
 )
 
 cmake_configure_file = _cmake_configure_file
@@ -38,8 +39,10 @@ generate_file = _generate_file
 ign_config_header = _ign_config_header
 ign_export_header = _ign_export_header
 generate_yaml = _generate_yaml
-qt_cc_binary = _qt_cc_binary
+
+qt_ui_library = _qt_ui_library
 qt_cc_library = _qt_cc_library
+qt_resource = _qt_resource
 
 IGNITION_ROOT = "//"
 

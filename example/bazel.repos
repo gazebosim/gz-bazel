@@ -7,10 +7,14 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-math
     version: ign-math6
+  ign_utils:
+    type: git
+    url: https://github.com/ignitionrobotics/ign-utils
+    version: ign-utils1 
   ign_common:
     type: git
     url: https://github.com/ignitionrobotics/ign-common
-    version: bazel-common4
+    version: ign-common4
   sdformat:
     type: git
     url: https://github.com/osrf/sdformat
@@ -23,15 +27,10 @@ repositories:
     type: git
     url: https://github.com/ignitionrobotics/ign-plugin
     version: bazel-plugin1
-  ign_utils:
-    type: git
-    url: https://github.com/ignitionrobotics/ign-utils
-    version: bazel-utils1 
   dart:
     type: git
     url: https://github.com/ignition-forks/dart
-    version: fix_bazel 
-
+    version: release-6.10
   ign_fuel_tools:
     type: git
     url: https://github.com/ignitionrobotics/ign-fuel-tools
@@ -39,27 +38,27 @@ repositories:
   ign_gazebo:
     type: git
     url: https://github.com/ignitionrobotics/ign-gazebo
-    version: ign-gazebo5
+    version: bazel-gazebo5
   ign_gui:
     type: git
     url: https://github.com/ignitionrobotics/ign-gui
-    version: ign-gui5
+    version: bazel-gui5
   ign_launch:
     type: git
     url: https://github.com/ignitionrobotics/ign-launch
-    version: ign-launch4
+    version: bazel-launch4
   ign_physics:
     type: git
     url: https://github.com/ignitionrobotics/ign-physics
-    version: ign-physics4
+    version: bazel-physics4
   ign_rendering:
     type: git
     url: https://github.com/ignitionrobotics/ign-rendering
-    version: ign-rendering4
+    version: bazel-rendering6
   ign_sensors:
     type: git
     url: https://github.com/ignitionrobotics/ign-sensors
-    version: ign-sensors5
+    version: bazel-sensors5
   ign_tools:
     type: git
     url: https://github.com/ignitionrobotics/ign-tools
@@ -67,7 +66,7 @@ repositories:
   ign_transport:
     type: git
     url: https://github.com/ignitionrobotics/ign-transport
-    version: ign-transport10
+    version: bazel-transport10
   ogre2:
     type: git
     url: https://github.com/ignition-forks/ogre-2.2-release
