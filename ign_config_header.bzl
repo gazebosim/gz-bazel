@@ -27,12 +27,16 @@ def ign_config_header(name, src, cmakelists, project_name, project_version, **kw
         "PROJECT_VERSION_FULL=%d.%d.%d" % (PROJECT_MAJOR, PROJECT_MINOR, PROJECT_PATCH),  # noqa
         "PROJECT_NAME=%s" % PROJECT_NAME,
         "PROJECT_NAME_NO_VERSION=%s" % PROJECT_NAME,
+        "PROJECT_NAME_UPPER=%s" % PROJECT_NAME.upper(),
+        "PROJECT_NAME_LOWER=%s" % PROJECT_NAME.lower(),
         "IGN_DESIGNATION=%s" % IGN_DESIGNATION,
         "IGN_DESIGNATION_UPPER=%s" % IGN_DESIGNATION.upper(),
         "IGN_DESIGNATION_LOWER=%s" % IGN_DESIGNATION.lower(),
         "PROJECT_BINARY_DIR=",
         "PROJECT_SOURCE_DIR=",
-
+        "CMAKE_INSTALL_PREFIX=",
+        "IGN_DATA_INSTALL_DIR=",
+        "IGN_LAUNCH_PLUGIN_INSTALL_PATH=",
     ] 
 
     if 'extra_defines' in kwargs:

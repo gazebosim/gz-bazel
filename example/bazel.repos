@@ -46,7 +46,7 @@ repositories:
   ign_launch:
     type: git
     url: https://github.com/ignitionrobotics/ign-launch
-    version: bazel-launch4
+    version: bazel-launch3
   ign_physics:
     type: git
     url: https://github.com/ignitionrobotics/ign-physics
