@@ -26,11 +26,11 @@ repositories:
   ign_math:
     type: git
     url: https://github.com/ignitionrobotics/ign-math
-    version: bazel-math6
+    version: ign-math6
   ign_msgs:
     type: git
     url: https://github.com/ignitionrobotics/ign-msgs
-    version: bazel-msgs6
+    version: ign-msgs6
   ign_physics:
     type: git
     url: https://github.com/ignitionrobotics/ign-physics
