@@ -1,0 +1,15 @@
+py_binary(
+    name = "ign_configure_file",
+    srcs = ["ign_configure_file.py", "cmake_configure_file.py"],
+    python_version = "PY3",
+    srcs_version = "PY2AND3",
+    visibility = ["//visibility:public"],
+)
+
+py_binary(
+    name = "cmake_configure_file",
+    srcs = ["cmake_configure_file.py"],
+    python_version = "PY3",
+    srcs_version = "PY2AND3",
+    visibility = ["//visibility:public"],
+)

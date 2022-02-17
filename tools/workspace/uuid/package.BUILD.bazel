@@ -1,0 +1,13 @@
+# -*- python -*-
+
+licenses(["notice"])  # BSD-3-Clause
+
+cc_library(
+    name = "uuid",
+    hdrs = ["uuid/uuid.h"],
+    includes = ["."],
+    linkopts = [
+      "-luuid",
+    ],
+    visibility = ["//visibility:public"],
+)

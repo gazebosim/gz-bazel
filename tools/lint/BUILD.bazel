@@ -1,0 +1,44 @@
+
+# -*- python -*-
+
+package(default_visibility = ["//visibility:public"])
+
+load("@ignition//tools/lint:lint.bzl", "add_lint_tests")
+load(
+    "@ignition//tools/skylark:ignition_py.bzl",
+    "ignition_py_binary",
+    "ignition_py_library",
+    "ignition_py_unittest",
+)
+
+ignition_py_library(
+    name = "find_data",
+    srcs = ["find_data.py"],
+)
+
+ignition_py_library(
+    name = "util",
+    srcs = ["util.py"],
+    data = ["//:.bazelproject"],
+    visibility = ["//visibility:private"],
+)
+
+ignition_py_binary(
+    name = "buildifier",
+    srcs = ["buildifier.py"],
+    data = [
+        ":buildifier-tables.json",
+        "@buildifier",
+    ],
+    deps = [
+        ":find_data",
+        ":util",
+    ],
+)
+
+ignition_py_binary(
+    name = "bzlcodestyle",
+    srcs = ["bzlcodestyle.py"],
+    main = "bzlcodestyle.py",
+    deps = ["@pycodestyle"],
+)
