@@ -1,0 +1,24 @@
+# -*- python -*-
+
+licenses(["notice"])  # BSD-3-clause 
+
+cc_library(
+    name = "fcl",
+    hdrs = glob([ 
+      "fcl/*.h",
+      "fcl/articulated_model/*.h",
+      "fcl/broadphase/*.h",
+      "fcl/BV/*.h",
+      "fcl/BVH/*.h",
+      "fcl/ccd/*.h",
+      "fcl/learning/*.h",
+      "fcl/math/*.h",
+      "fcl/narrowphase/*.h",
+      "fcl/shape/*.h",
+      "fcl/simd/*.h",
+      "fcl/traveral/*.h",
+    ]),
+    includes = [ "." ],
+    linkopts = ["-lfcl"],
+    visibility = ["//visibility:public"],
+)

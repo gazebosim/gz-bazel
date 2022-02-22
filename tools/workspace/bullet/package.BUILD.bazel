@@ -1,0 +1,16 @@
+# -*- python -*-
+
+licenses(["notice"])  # BSD-3-Clause
+
+cc_library(
+    name = "bullet",
+    hdrs = glob(["bullet/*.h", "bullet/**/*.h"]),
+    includes = ["bullet"],
+    linkopts = [
+      "-lBulletSoftBody",
+      "-lBulletCollision",
+      "-lBulletDynamics",
+      "-lLinearMath",
+    ],
+    visibility = ["//visibility:public"],
+)

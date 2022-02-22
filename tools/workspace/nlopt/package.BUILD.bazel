@@ -1,0 +1,12 @@
+# -*- python -*-
+
+licenses(["restricted"])  # LGPL-2.0+
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "nlopt",
+    hdrs = [ "nlopt.h", "nlopt.f" ],
+    includes = [ "." ],
+    linkopts = ["-lnlopt"],
+)

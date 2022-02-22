@@ -15,7 +15,7 @@ cc_library(
         ],
     ),
     hdrs = glob([
-        "itnyxml2.h",
+        "tinyxml2.h",
     ]),
     includes = [
         ".",

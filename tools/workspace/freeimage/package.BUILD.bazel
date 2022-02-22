@@ -1,0 +1,12 @@
+# -*- python -*-
+
+licenses(["restricted"])  # GPL-2.0+
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "freeimage",
+    hdrs = [ "FreeImage.h" ],
+    includes = [ "." ],
+    linkopts = ["-lfreeimage"],
+)

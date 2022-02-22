@@ -1,0 +1,12 @@
+# -*- python -*-
+
+licenses(["notice"])  # BSD-3-clause
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "ode",
+    hdrs = glob([ "ode/*.h" ]),
+    includes = [ "." ],
+    linkopts = ["-lode"],
+)

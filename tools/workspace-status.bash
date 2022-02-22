@@ -2,7 +2,17 @@
 
 WORKSPACE=`pwd`
 
-LIBS=(ign_utils ign_math ign_common)
+LIBS=(
+  ign_common 
+  ign_fuel_tools 
+  ign_math 
+  ign_msgs 
+  ign_physics
+  ign_plugin
+  ign_rendering
+  ign_transport
+  ign_utils 
+  sdformat)
 
 for LIB in "${LIBS[@]}"
 do

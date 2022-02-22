@@ -141,7 +141,7 @@ def main():
     if args.input is None or args.output is None:
         parser.print_usage()
         sys.exit(1)
-    definitions = _setup_definitions(args)
+    definitions = setup_definitions(args)
 
     with open(args.input, 'r') as input_file:
         with open(args.output + '.tmp', 'w') as output_file:

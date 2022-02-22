@@ -1,0 +1,23 @@
+# -*- python -*-
+
+licenses(["notice"])  # BSD-3-Clause
+
+cc_library(
+    name = "curl",
+    hdrs = [
+      "curl/curl.h",
+      "curl/curlver.h",
+      "curl/easy.h",
+      "curl/mprintf.h",
+      "curl/multi.h",
+      "curl/stdcheaders.h",
+      "curl/system.h",
+      "curl/typecheck-gcc.h",
+      "curl/urlapi.h",
+    ],
+    includes = ["."],
+    linkopts = [
+        "-lcurl",
+    ],
+    visibility = ["//visibility:public"],
+)

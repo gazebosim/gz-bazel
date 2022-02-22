@@ -16,4 +16,3 @@ def rules_python_repository(
         sha256 = "4feecd37ec6e9941a455a19e7392bed65003eab0aa6ea347ca431bce2640e530",  # noqa
         mirrors = mirrors,
     )
-

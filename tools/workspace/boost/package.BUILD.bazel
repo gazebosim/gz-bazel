@@ -1,0 +1,39 @@
+# -*- python -*-
+
+licenses(["notice"])  # BSD-3-Clause
+
+cc_library(
+    name = "system",
+    hdrs = glob(["boost/system/*.hpp", "boost/system/**/*.hpp"]), 
+    includes = ["."],
+    linkopts = [
+      "-lboost_system",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "filesystem",
+    hdrs = ["boost/filesystem.hpp"] + 
+      glob(["boost/filesystem/*.hpp", "boost/filesystem/**/*.hpp"]), 
+    includes = ["."],
+    linkopts = [
+      "-lboost_filesystem",
+    ],
+    deps = [
+      ":system",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "regex",
+    hdrs = ["boost/regex.hpp"] + 
+      glob(["boost/regex/*.hpp", "boost/regex/**/*.hpp"]), 
+    includes = ["."],
+    linkopts = [
+      "-lboost_regex",
+    ],
+    visibility = ["//visibility:public"],
+)
+

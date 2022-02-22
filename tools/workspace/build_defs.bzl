@@ -13,6 +13,11 @@ load(
     _ign_include_header = "ign_include_header"
 )
 
+load(
+    ":cmake_configure_file.bzl",
+    _cmake_configure_file = "cmake_configure_file"
+)
+
 IGNITION_ROOT = "@ignition//"
 
 IGNITION_VISIBILITY = [
@@ -26,6 +31,7 @@ IGNITION_FEATURES = [
     "-layering_check",
 ]
 
+cmake_configure_file= _cmake_configure_file
 ign_configure_header = _ign_configure_header
 ign_export_header = _ign_export_header
 ign_include_header = _ign_include_header

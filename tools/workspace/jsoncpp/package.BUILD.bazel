@@ -1,13 +1,13 @@
 # -*- python -*-
 
-licenses(["notice"])  # BSD-3-Clause
+licenses(["notice"])  # MIT
 
 cc_library(
-    name = "uuid",
-    hdrs = ["uuid/uuid.h"],
+    name = "jsoncpp",
+    hdrs = glob(["json/*.h"]),
     includes = ["."],
     linkopts = [
-        "-luuid",
+        "-ljsoncpp",
     ],
     visibility = ["//visibility:public"],
 )

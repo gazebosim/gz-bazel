@@ -1,0 +1,69 @@
+# -*- python -*-
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "X11",
+    linkopts = [
+      "-lX11",
+    ],
+)
+
+cc_library(
+    name = "SM",
+    hdrs = glob(["X11/SM/*.h"]),
+    includes = ["."],
+    linkopts =  [
+      "-lSM",
+    ],
+)
+
+cc_library(
+    name = "ICE",
+    hdrs = glob(["X11/ICE/*.h"]),
+    includes = ["."],
+    linkopts =  [
+      "-lICE",
+    ],
+)
+
+cc_library(
+    name = "Xaw",
+    hdrs = glob(["X11/Xaw/*.h"]),
+    includes = ["."],
+    linkopts =  [
+      "-lXaw7",
+    ],
+    deps = [
+      ":Xt",
+      ":X11",
+    ]
+)
+
+cc_library(
+    name = "Xext",
+    hdrs = glob(["X11/extensions/*.h"]),
+    includes = ["."],
+    linkopts =  [
+      "-lXext",
+    ],
+)
+
+cc_library(
+    name = "Xt",
+    hdrs = glob(["X11/*.h"]),
+    includes = ["."],
+    linkopts =  [
+      "-lXt",
+    ],
+)
+
+cc_library(
+    name = "Xrandr",
+    hdrs = ["X11/extensions/Xrandr.h"],
+    includes = ["."],
+    linkopts =  [
+      "-lXrandr",
+    ],
+)
+

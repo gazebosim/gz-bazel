@@ -1,0 +1,18 @@
+# -*- python -*-
+#
+licenses(["restricted"])  # GPL-2.0+
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "freetype",
+    hdrs = glob(
+      include = [
+        "freetype2/ft2build.h",
+        "freetype2/freetype/*.h",
+        "freetype2/freetype/config/*.h",
+      ]
+    ),
+    includes = [ "freetype2" ],
+    linkopts = ["-lfreetype"],
+)

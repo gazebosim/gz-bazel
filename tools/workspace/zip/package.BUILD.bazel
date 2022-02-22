@@ -3,11 +3,11 @@
 licenses(["notice"])  # BSD-3-Clause
 
 cc_library(
-    name = "uuid",
-    hdrs = ["uuid/uuid.h"],
+    name = "zip",
+    hdrs = ["zip.h", "zipconf.h"],
     includes = ["."],
     linkopts = [
-        "-luuid",
+        "-lzip",
     ],
     visibility = ["//visibility:public"],
 )

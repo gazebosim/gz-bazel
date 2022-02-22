@@ -13,3 +13,12 @@ load("@bazel_skylib//lib:versions.bzl", "versions")
 # to actually be defined. The minimum_bazel_version value should match the
 # version passed to the find_package(Bazel) call in the root CMakeLists.txt.
 versions.check(minimum_bazel_version = "3.0")
+
+load(
+    "@rules_proto//proto:repositories.bzl",
+    "rules_proto_dependencies",
+    "rules_proto_toolchains"
+)
+
+rules_proto_dependencies()
+rules_proto_toolchains()

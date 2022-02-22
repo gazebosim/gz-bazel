@@ -3,11 +3,15 @@
 licenses(["notice"])  # BSD-3-Clause
 
 cc_library(
-    name = "uuid",
-    hdrs = ["uuid/uuid.h"],
+    name = "assimp",
+    hdrs = glob([
+      "assimp/*.h",
+      "assimp/*.inl",
+      "assimp/Compiler/*.h",
+    ]),
     includes = ["."],
     linkopts = [
-        "-luuid",
+        "-lassimp",
     ],
     visibility = ["//visibility:public"],
 )

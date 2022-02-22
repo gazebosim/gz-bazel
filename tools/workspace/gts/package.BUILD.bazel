@@ -1,0 +1,12 @@
+# -*- python -*-
+
+licenses(["restricted"])  # LGPL-2.0+
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "gts",
+    hdrs = [ "gts.h", "gtsconfig.h" ],
+    includes = [ "." ],
+    linkopts = ["-lgts"],
+)
