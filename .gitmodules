@@ -1,0 +1,3 @@
+[submodule "ign_utils"]
+	path = ign_utils
+	url = https://github.com/ignitionrobotics/ign-utils.git
