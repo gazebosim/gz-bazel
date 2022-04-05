@@ -3,7 +3,7 @@ load(
     "cmake_configure_file",
 )
 
-def ign_config_header(name, src, cmakelists, project_name, project_version, **kwargs):
+def ign_config_header(name, src, cmakelists, project_name, project_version, extra_defines = None, **kwargs):
     out = src
     idx = out.find(".in")
     if (idx > 0):
@@ -14,7 +14,6 @@ def ign_config_header(name, src, cmakelists, project_name, project_version, **kw
     PROJECT_MAJOR = project_version[0]
     PROJECT_MINOR = project_version[1]
     PROJECT_PATCH = project_version[2]
-
 
     defines = [
         "PROJECT_VERSION_MAJOR=%d" % PROJECT_MAJOR,
@@ -32,11 +31,10 @@ def ign_config_header(name, src, cmakelists, project_name, project_version, **kw
         "IGN_DESIGNATION_LOWER=%s" % IGN_DESIGNATION.lower(),
         "PROJECT_BINARY_DIR=",
         "PROJECT_SOURCE_DIR=",
+    ]
 
-    ] 
-
-    if 'extra_defines' in kwargs:
-        defines = defines + kwargs['extra_defines']
+    if extra_defines != None:
+        defines = defines + extra_defines
 
     cmake_configure_file(
         name = name,
@@ -45,4 +43,5 @@ def ign_config_header(name, src, cmakelists, project_name, project_version, **kw
         cmakelists = cmakelists,
         defines = defines,
         visibility = ["//visibility:private"],
+        **kwargs
     )
