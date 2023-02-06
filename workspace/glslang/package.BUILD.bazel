@@ -1,0 +1,61 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "spirv-tools",
+    hdrs = glob([
+        "include/spirv-tools/*.h",
+        "include/spirv-tools/*.hpp",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lSPIRV-Tools-opt",
+        "-lSPIRV-Tools-link",
+        "-lSPIRV-Tools",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "spirv",
+    hdrs = glob([
+        "include/glslang/SPIRV/*.h",
+        "include/glslang/SPIRV/*.hpp",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lSPIRV",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "glslang",
+    hdrs = glob([
+        "include/glslang/*.h",
+        "include/glslang/HLSL/*.h",
+        "include/glslang/Include/*.h",
+        "include/glslang/MachineIndependent/*.h",
+        "include/glslang/MachineIndependent/preprocessor/*.h",
+        "include/glslang/Public/*.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lglslang",
+        "-lMachineIndependent",
+        "-lGenericCodeGen",
+        "-lOSDependent",
+        "-lHLSL",
+        "-lOGLCompiler",
+        "-lSPVRemapper",
+        "-lpthread",
+    ],
+    visibility = ["//visibility:public"],
+)

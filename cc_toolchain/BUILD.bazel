@@ -1,0 +1,21 @@
+# -*- python -*-
+
+package(default_visibility = ["//visibility:public"])
+
+config_setting(
+    name = "debug",
+    values = {"compilation_mode": "dbg"},
+)
+
+config_setting(
+    name = "linux",
+    constraint_values = ["@bazel_tools//platforms:linux"],
+)
+
+filegroup(
+    name = "toolchain_deps",
+    data = select({
+        "//conditions:default": [],
+    }),
+    visibility = ["//common:__pkg__"],
+)

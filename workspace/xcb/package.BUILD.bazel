@@ -1,0 +1,39 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "xcb",
+    hdrs = ["include/xcb/xcb.h", "include/xcb/xproto.h", "include/xcb/render.h"],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lxcb",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "xcb-randr",
+    hdrs = ["include/xcb/randr.h"],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lxcb-randr",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "x11-xcb",
+    hdrs = ["include/X11/Xlib-xcb.h"],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lX11-xcb",
+    ],
+    visibility = ["//visibility:public"],
+)

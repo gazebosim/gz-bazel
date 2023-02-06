@@ -1,0 +1,18 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "vulkan",
+    hdrs = glob([
+        "include/vulkan/*.h",
+        "include/vulkan/*.hpp",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lvulkan",
+    ],
+    visibility = ["//visibility:public"],
+)

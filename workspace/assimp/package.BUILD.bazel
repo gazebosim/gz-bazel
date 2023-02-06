@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+licenses(["notice"])
+
+cc_library(
+    name = "assimp",
+    hdrs = glob(["include/assimp/*.h", "include/assimp/Compiler/*.h", "include/assimp/*.inl"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lassimp",
+    ],
+    visibility = ["//visibility:public"],
+)

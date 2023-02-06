@@ -1,0 +1,21 @@
+# -*- mode: python -*-
+
+load(
+    "@gz//bazel/workspace:pkg_config.bzl",
+    "pkg_config_repository",
+)
+
+def tinyxml2_repository(
+        name,
+        licenses = ["notice"],  # Zlib
+        modname = "tinyxml2",
+        pkg_config_paths = [],
+        homebrew_subdir = "opt/tinyxml2/lib/pkgconfig",
+        **kwargs):
+    pkg_config_repository(
+        name = name,
+        licenses = licenses,
+        modname = modname,
+        pkg_config_paths = pkg_config_paths,
+        **kwargs
+    )

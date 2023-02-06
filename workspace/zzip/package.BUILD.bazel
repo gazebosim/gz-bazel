@@ -1,0 +1,18 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "zzip",
+    hdrs = glob([
+        "include/*.h",
+        "include/zzip/*.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lzzip",
+    ],
+    visibility = ["//visibility:public"],
+)

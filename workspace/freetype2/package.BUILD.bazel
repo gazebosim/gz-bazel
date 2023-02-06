@@ -1,0 +1,19 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "freetype2",
+    hdrs = glob([
+        "include/freetype2/*.h",
+        "include/freetype2/freetype/*.h",
+        "include/freetype2/freetype/config/*.h",
+    ]),
+    includes = ["include/freetype2/"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lfreetype",
+    ],
+    visibility = ["//visibility:public"],
+)

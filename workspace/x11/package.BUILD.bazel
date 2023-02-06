@@ -1,0 +1,107 @@
+# -*- python -*-
+
+licenses(["notice"])  # SGI-B-2.0
+
+cc_library(
+    name = "ICE",
+    hdrs = glob(["include/X11/ICE/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L/usr/lib/x86_64-linux-gnu",
+        "-lICE",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "Xaw",
+    hdrs = glob(["include/X11/Xaw/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L/usr/lib/x86_64-linux-gnu",
+        "-lXaw7",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "Xt",
+    hdrs = [
+        "include/X11/CallbackI.h",
+        "include/X11/Composite.h",
+        "include/X11/CompositeP.h",
+        "include/X11/ConstrainP.h",
+        "include/X11/Constraint.h",
+        "include/X11/ConvertI.h",
+        "include/X11/Core.h",
+        "include/X11/CoreP.h",
+        "include/X11/CreateI.h",
+        "include/X11/EventI.h",
+        "include/X11/HookObjI.h",
+        "include/X11/InitialI.h",
+        "include/X11/Intrinsic.h",
+        "include/X11/IntrinsicI.h",
+        "include/X11/IntrinsicP.h",
+        "include/X11/Object.h",
+        "include/X11/ObjectP.h",
+        "include/X11/PassivGraI.h",
+        "include/X11/RectObj.h",
+        "include/X11/RectObjP.h",
+        "include/X11/ResConfigP.h",
+        "include/X11/ResourceI.h",
+        "include/X11/SelectionI.h",
+        "include/X11/Shell.h",
+        "include/X11/ShellI.h",
+        "include/X11/ShellP.h",
+        "include/X11/StringDefs.h",
+        "include/X11/ThreadsI.h",
+        "include/X11/TranslateI.h",
+        "include/X11/VarargsI.h",
+        "include/X11/Vendor.h",
+        "include/X11/VendorP.h",
+        "include/X11/Xtos.h",
+    ],
+    includes = ["include"],
+    linkopts = [
+        "-L/usr/lib/x86_64-linux-gnu",
+        "-lXt",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "Xrandr",
+    hdrs = [
+        "include/X11/extensions/Xrandr.h",
+    ],
+    includes = ["include"],
+    linkopts = [
+        "-L/usr/lib/x86_64-linux-gnu",
+        "-lXrandr",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "X11",
+    hdrs = [
+        "include/X11/ImUtil.h",
+        "include/X11/XKBlib.h",
+        "include/X11/Xcms.h",
+        "include/X11/Xlib.h",
+        "include/X11/XlibConf.h",
+        "include/X11/Xlibint.h",
+        "include/X11/Xlocale.h",
+        "include/X11/Xregion.h",
+        "include/X11/Xresource.h",
+        "include/X11/Xutil.h",
+        "include/X11/cursorfont.h",
+        "include/X11/extensions/XKBgeom.h",
+    ],
+    includes = ["include"],
+    linkopts = [
+        "-L/usr/lib/x86_64-linux-gnu",
+        "-lX11",
+    ],
+    visibility = ["//visibility:public"],
+)

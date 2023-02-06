@@ -1,0 +1,18 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "console_bridge",
+    hdrs = glob([
+      "include/console_bridge_export.h",
+      "include/console_bridge/*.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lconsole_bridge",
+    ],
+    visibility = ["//visibility:public"],
+)
