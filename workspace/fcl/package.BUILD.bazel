@@ -5,8 +5,8 @@ load(":vars.bzl", "LIBDIR")
 cc_library(
     name = "fcl",
     hdrs = glob([
-      "include/fcl/*.h",
-      "include/fcl/*.hpp",
+        "include/fcl/*.h",
+        "include/fcl/*.hpp",
     ]),
     includes = ["include"],
     linkopts = [

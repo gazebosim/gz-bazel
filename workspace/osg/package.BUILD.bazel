@@ -14,16 +14,16 @@ cc_library(
     visibility = ["//visibility:public"],
 )
 
-components = ['Animation', 'DB', 'FX', 'GA', 'Manipulator', 'Particle', 'Presentation', 'Shadow', 'Sim', 'Terrain', 'Text', 'UI', 'Util', 'Viewer', 'Volume', 'Widget']
+components = ["Animation", "DB", "FX", "GA", "Manipulator", "Particle", "Presentation", "Shadow", "Sim", "Terrain", "Text", "UI", "Util", "Viewer", "Volume", "Widget"]
 
 [cc_library(
-  name = "osg" + component,
-  hdrs = glob(["include/osg" + component + "/*"]),
-  includes = ["include"],
-  linkopts = [
-      "-L" + LIBDIR,
-      "-Wl,-rpath," + LIBDIR,
-      "-losg" + component,
-  ],
-  visibility = ["//visibility:public"],
+    name = "osg" + component,
+    hdrs = glob(["include/osg" + component + "/*"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-losg" + component,
+    ],
+    visibility = ["//visibility:public"],
 ) for component in components]

@@ -11,7 +11,6 @@ def _impl(repository_ctx):
         repository_ctx.symlink("/usr/include/console_bridge", "include/console_bridge")
         repository_ctx.symlink("/usr/include/console_bridge_export.h", "include/console_bridge_export.h")
 
-
     # Declare the libdir
     repository_ctx.file(
         "vars.bzl",
@@ -21,7 +20,7 @@ def _impl(repository_ctx):
 
     # Add the BUILD file.
     repository_ctx.symlink(
-      Label("@gz//bazel/workspace/console_bridge:package.BUILD.bazel"),
+        Label("@gz//bazel/workspace/console_bridge:package.BUILD.bazel"),
         "BUILD.bazel",
     )
 

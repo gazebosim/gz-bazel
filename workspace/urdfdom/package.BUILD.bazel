@@ -5,7 +5,7 @@ load(":vars.bzl", "LIBDIR")
 cc_library(
     name = "exception",
     hdrs = glob([
-      "include/urdf_exception/*.h",
+        "include/urdf_exception/*.h",
     ]),
     includes = ["include"],
     linkopts = [
@@ -19,7 +19,7 @@ cc_library(
 cc_library(
     name = "model",
     hdrs = glob([
-      "include/urdf_model/*.h",
+        "include/urdf_model/*.h",
     ]),
     includes = ["include"],
     linkopts = [
@@ -33,7 +33,7 @@ cc_library(
 cc_library(
     name = "model_state",
     hdrs = glob([
-      "include/urdf_model_state/*.h",
+        "include/urdf_model_state/*.h",
     ]),
     includes = ["include"],
     linkopts = [
@@ -47,7 +47,7 @@ cc_library(
 cc_library(
     name = "sensor",
     hdrs = glob([
-      "include/urdf_sensor/*.h",
+        "include/urdf_sensor/*.h",
     ]),
     includes = ["include"],
     linkopts = [
@@ -61,7 +61,7 @@ cc_library(
 cc_library(
     name = "world",
     hdrs = glob([
-      "include/urdf_world/*.h",
+        "include/urdf_world/*.h",
     ]),
     includes = ["include"],
     linkopts = [
@@ -73,16 +73,16 @@ cc_library(
 )
 
 cc_library(
-  name = "urdfdom",
-  hdrs = glob([
-    "include/urdf_parser/*.h"
-  ]),
-  includes = ["include"],
-  deps = [
-    ":model",
-    ":model_state",
-    ":sensor",
-    ":world",
-  ],
-  visibility = ["//visibility:public"],
+    name = "urdfdom",
+    hdrs = glob([
+        "include/urdf_parser/*.h",
+    ]),
+    includes = ["include"],
+    deps = [
+        ":model",
+        ":model_state",
+        ":sensor",
+        ":world",
+    ],
+    visibility = ["//visibility:public"],
 )
