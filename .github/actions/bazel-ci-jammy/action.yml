@@ -1,4 +1,4 @@
-name: 'Ignition install using bazel under bionic'
+name: 'Gazebo install using bazel'
 description: ''
 author: "Michael Carroll"
 inputs:
@@ -7,7 +7,7 @@ inputs:
     required: true
   bazel-args:
     description: 'Additional Bazel arguments to use when building package under test'
-    required: true 
+    required: true
     default: '//...'
 runs:
   using: 'docker'

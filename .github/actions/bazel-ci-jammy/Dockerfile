@@ -1,4 +1,4 @@
-FROM ghcr.io/ignition-tooling/ign-ubuntu:citadel-bionic
+FROM ghcr.io/gazebo-tooling/gz-ubuntu:garden-jammy
 
 COPY ["run.sh", "/run.sh"]
 COPY ["entrypoint.sh", "/entrypoint.sh"]
