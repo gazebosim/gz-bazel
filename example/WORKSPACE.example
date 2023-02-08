@@ -1,0 +1,5 @@
+workspace(name = "gz")
+
+load("@gz//bazel/workspace:default.bzl", "add_default_workspace")
+
+add_default_workspace()
