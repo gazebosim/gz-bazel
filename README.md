@@ -31,7 +31,7 @@ Alternatively, if you intend to work with multiple bazel versions, you can use [
 
 ```
 # Download bazelisk from Github releases
-wget https:://github.com/bazelbuild/bazelisk/releases/download/v1.16.0/bazelisk-linux-amd64
+wget https://github.com/bazelbuild/bazelisk/releases/download/v1.16.0/bazelisk-linux-amd64
 
 # Place it somewhere in your USER path
 mv bazelisk-linux-amd64 ~/.local/bin/bazel
@@ -135,4 +135,9 @@ cd ~/gz
 bazel build //bazel/lint:buildifier
 ```
 
+# Credits
 
+Many of the bazel skylib rules and external package repositories are from [the drake project](https://drake.mit.edu/), 
+and modified for use with the Gazebo project.
+For this reason, this repository is licensed under the same BSD-3-Clause license as Drake.
+For more information on how Drake utilizes bazel, consult [the documentation](https://drake.mit.edu/bazel.html).
