@@ -7,13 +7,36 @@ jobs:
     runs-on: ubuntu-latest
     name: Ubuntu Jammy CI
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
 
-      - name: Login to GHCR
-        run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache bazel
+        uses: actions/cache@v3
+        env:
+          cache-name: bazel-cache-3
+        with:
+          path: |
+            ${{ github.workspace }}/bazel_cache
+          key: cache-bazel-${{ hashFiles('example/bazel.repos') }}
+          restore-keys: |
+              cache-bazel-
 
       - name: Compile and test
         uses: ./.github/actions/bazel-ci-jammy
         with:
           bazel-args: //...
+
+      - name: 'Upload Test Logs'
+        uses: actions/upload-artifact@v3
+        with:
+          name: bazel-testlogs
+          path: ${{ github.workspace }}/bazel-testlogs
+          retention-days: 5
