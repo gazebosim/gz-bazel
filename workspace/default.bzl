@@ -5,6 +5,7 @@ load("@gz//bazel/workspace:os.bzl", "os_repository")
 load("@gz//bazel/workspace/bazel_skylib:repository.bzl", "bazel_skylib_repository")  # noqa
 load("@gz//bazel/workspace/buildifier:repository.bzl", "buildifier_repository")  # noqa
 load("@gz//bazel/workspace/cli11:repository.bzl", "cli11_repository")  # noqa
+load("@gz//bazel/workspace/eigen3:repository.bzl", "eigen3_repository")  # noqa
 load("@gz//bazel/workspace/gtest:repository.bzl", "gtest_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
@@ -26,6 +27,8 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         cli11_repository(name = "cli11", mirrors = mirrors)
     if "gtest" not in excludes:
         gtest_repository(name = "gtest", mirrors = mirrors)
+    if "eigen3" not in excludes:
+        eigen3_repository(name = "eigen3")
     if "pycodestyle" not in excludes:
         pycodestyle_repository(name = "pycodestyle", mirrors = mirrors)
     if "rules_python" not in excludes:
