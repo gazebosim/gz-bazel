@@ -4,6 +4,8 @@ load("@gz//bazel/workspace:mirrors.bzl", "DEFAULT_MIRRORS")
 load("@gz//bazel/workspace:os.bzl", "os_repository")
 load("@gz//bazel/workspace/bazel_skylib:repository.bzl", "bazel_skylib_repository")  # noqa
 load("@gz//bazel/workspace/buildifier:repository.bzl", "buildifier_repository")  # noqa
+load("@gz//bazel/workspace/cli11:repository.bzl", "cli11_repository")  # noqa
+load("@gz//bazel/workspace/gtest:repository.bzl", "gtest_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
 
@@ -20,6 +22,10 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         bazel_skylib_repository(name = "bazel_skylib", mirrors = mirrors)
     if "buildifier" not in excludes:
         buildifier_repository(name = "buildifier", mirrors = mirrors)
+    if "cli11" not in excludes:
+        cli11_repository(name = "cli11", mirrors = mirrors)
+    if "gtest" not in excludes:
+        gtest_repository(name = "gtest", mirrors = mirrors)
     if "pycodestyle" not in excludes:
         pycodestyle_repository(name = "pycodestyle", mirrors = mirrors)
     if "rules_python" not in excludes:
