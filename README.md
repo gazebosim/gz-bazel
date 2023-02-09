@@ -16,7 +16,7 @@ To use your system package manager, follow the [Bazel Instructions](https://docs
 
 For Ubuntu 22.04
 ```
-# Intall the bazel repos
+# Install the bazel repos
 sudo apt install apt-transport-https curl gnupg -y
 curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
 sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
