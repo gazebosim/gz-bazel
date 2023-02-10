@@ -1,1 +1,4 @@
+# Things needed for dart
 libnlopt-cxx-dev
+libfmt-dev
+libopenscenegraph-dev
