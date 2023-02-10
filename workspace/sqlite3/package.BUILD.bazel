@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "sqlite3",
+    hdrs = glob([
+        "include/sqlite3.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lsqlite3",
+    ],
+    visibility = ["//visibility:public"],
+)
