@@ -1,6 +1,1 @@
-build --cxxopt=--std=c++17
-build --define enable_ifaddrs=true
-build --test_env=DISPLAY
-test --define enable_ifaddrs=true
-test --test_env=DISPLAY
-#build --compilation_mode=dbg
+import %workspace%/bazel/bazel.rc

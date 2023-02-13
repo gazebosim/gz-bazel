@@ -1,0 +1,21 @@
+# -*- python -*-
+
+load("@gz//bazel/skylark:gz_py.bzl", "gz_py_binary")
+
+# Used by :python_env.bzl.
+config_setting(
+    name = "linux",
+    values = {"cpu": "k8"},
+)
+
+gz_py_binary(
+    name = "gz_configure_file",
+    srcs = ["gz_configure_file.py"],
+    visibility = ["//visibility:public"],
+)
+
+gz_py_binary(
+    name = "cmake_configure_file",
+    srcs = ["cmake_configure_file.py"],
+    visibility = ["//visibility:public"],
+)

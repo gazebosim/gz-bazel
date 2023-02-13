@@ -1,0 +1,45 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@gz//bazel/lint:lint.bzl", "add_lint_tests")
+load(
+    "@gz//bazel/skylark:gz_py.bzl",
+    "gz_py_binary",
+    "gz_py_library",
+    "gz_py_unittest",
+)
+
+gz_py_library(
+    name = "find_data",
+    srcs = ["find_data.py"],
+)
+
+gz_py_library(
+    name = "util",
+    srcs = ["util.py"],
+    data = ["//:.bazelproject"],
+    visibility = ["//visibility:private"],
+)
+
+gz_py_binary(
+    name = "buildifier",
+    srcs = ["buildifier.py"],
+    data = [
+        ":buildifier-tables.json",
+        "@buildifier",
+    ],
+    deps = [
+        ":find_data",
+        ":util",
+    ],
+)
+
+gz_py_binary(
+    name = "bzlcodestyle",
+    srcs = ["bzlcodestyle.py"],
+    main = "bzlcodestyle.py",
+    deps = ["@pycodestyle"],
+)
+
+# === test ===
+
+add_lint_tests()

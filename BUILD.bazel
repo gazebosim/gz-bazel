@@ -1,40 +1,16 @@
+# -*- python -*-
 load(
-    ":build_defs.bzl",
-    "IGNITION_FEATURES",
-    "IGNITION_ROOT",
-    "IGNITION_VISIBILITY",
+    "@gz//bazel/skylark:build_defs.bzl",
+    "GZ_FEATURES",
+    "GZ_VISIBILITY",
 )
+load("@gz//bazel/lint:lint.bzl", "add_lint_tests")
 
 package(
-    default_visibility = IGNITION_VISIBILITY,
-    features = IGNITION_FEATURES,
+    default_visibility = GZ_VISIBILITY,
+    features = GZ_FEATURES,
 )
 
-licenses(["notice"])
+licenses(["notice"])  # BSD-3-Clause
 
-exports_files(["LICENSE"])
-
-py_binary(
-    name = "cmake_configure_file",
-    srcs = ["cmake_configure_file.py"],
-    python_version = "PY3",
-    srcs_version = "PY2AND3",
-)
-
-cc_library(
-    name = "utilities",
-    hdrs = [
-        "ignition/utilities/ExtraTestMacros.hh",
-        "ignition/utilities/SuppressWarning.hh",
-        "ignition/utilities/detail/ExtraTestMacros.hh",
-        "ignition/utilities/detail/SuppressWarning.hh",
-    ],
-    includes = ["."],
-)
-
-py_binary(
-    name = "embed_sdf",
-    srcs = ["embed_sdf.py"],
-    python_version = "PY3",
-    srcs_version = "PY2AND3",
-)
+add_lint_tests()
