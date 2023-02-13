@@ -128,7 +128,7 @@ bazel-bin/bazel/lint/buildifier --all         # Reformat all Bazel files.
 bazel-bin/bazel/lint/buildifier //common/BUILD.bazel  # Only reformat one file.
 ```
 
-If buildifier was not build with the workspace (unusual), but it via
+If buildifier was not built with the workspace (this is unusual), build it via
 
 ```
 cd ~/gz
