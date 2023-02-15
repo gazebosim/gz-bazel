@@ -1,0 +1,25 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+licenses(["restricted"])  # LGPL-2.0+
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "glib",
+    hdrs = glob([
+        "include/glibconfig.h",
+        "include/glib-2.0/*.h",
+        "include/glib-2.0/**/*.h",
+    ]),
+    includes = ["include", "include/glib-2.0"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lglib-2.0",
+        "-lgobject-2.0",
+        "-lgio-2.0",
+        "-lgthread-2.0",
+    ],
+)

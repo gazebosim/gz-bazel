@@ -27,6 +27,7 @@ jobs:
             ${{ github.workspace }}/bazel_cache
           key: cache-bazel-${{ hashFiles('example/bazel.repos') }}
           restore-keys: |
+              cache-bazel-${{ hashFiles('example/bazel.repos') }}
               cache-bazel-
 
       - name: Compile and test
@@ -36,6 +37,7 @@ jobs:
 
       - name: 'Upload Test Logs'
         uses: actions/upload-artifact@v3
+        if: success() || failure()
         with:
           name: bazel-testlogs
           path: ${{ github.workspace }}/bazel-testlogs
