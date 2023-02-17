@@ -5,6 +5,7 @@ load("@gz//bazel/workspace:os.bzl", "os_repository")
 load("@gz//bazel/workspace/bazel_skylib:repository.bzl", "bazel_skylib_repository")  # noqa
 load("@gz//bazel/workspace/buildifier:repository.bzl", "buildifier_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
+load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
 
 def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
@@ -22,6 +23,8 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         buildifier_repository(name = "buildifier", mirrors = mirrors)
     if "pycodestyle" not in excludes:
         pycodestyle_repository(name = "pycodestyle", mirrors = mirrors)
+    if "rules_proto" not in excludes:
+        rules_proto_repository(name = "rules_proto", mirrors = mirrors)
     if "rules_python" not in excludes:
         rules_python_repository(name = "rules_python", mirrors = mirrors)
 
