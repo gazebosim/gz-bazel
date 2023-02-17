@@ -13,6 +13,7 @@ SOURCE_DEPENDENCIES="`pwd`/.github/ci/dependencies.yaml"
 SOURCE_DEPENDENCIES_VERSIONED="`pwd`/.github/ci-$SYSTEM_VERSION/dependencies.yaml"
 
 cd "$GITHUB_WORKSPACE"
+mkdir -p ${GITHUB_WORKSPACE}/bazel-testlogs
 
 # Restore cache
 if [ ! -d "$BAZEL_CACHE" ]; then
@@ -29,6 +30,7 @@ chmod +x ${BAZEL}
 
 # Import repos
 mkdir -p ${WORKSPACE}/bazel
+
 cd ${WORKSPACE}
 shopt -s extglob
 # Copy relevant bazel files into the build space
@@ -57,13 +59,10 @@ ${BAZEL} build $BAZEL_ARGS
 echo ::endgroup::
 
 echo ::group::Bazel test
-${BAZEL} test $BAZEL_ARGS
+EXIT_CODE=0
+${BAZEL} test $BAZEL_ARGS || EXIT_CODE=$?
 echo ::endgroup::
 
-echo ::group::Bazel test
-ls -la ${WORKSPACE}
-ls -la ${WORKSPACE}/bazel-testlogs
-ls -la ${BAZEL_CACHE}
-echo ::endgroup::
+cp -RL ${WORKSPACE}/bazel-testlogs/* ${GITHUB_WORKSPACE}/bazel-testlogs/
 
-cp -RL ${WORKSPACE}/bazel-testlogs ${GITHUB_WORKSPACE}/bazel-testlogs
+exit $EXIT_CODE

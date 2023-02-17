@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+licenses(["notice"])  # Zlib
+
+cc_library(
+    name = "tinyxml2",
+    hdrs = ["include/tinyxml2.h"],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-ltinyxml2",
+    ],
+    visibility = ["//visibility:public"],
+)

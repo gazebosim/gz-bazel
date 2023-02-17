@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+licenses(["restricted"])  # GPL-2.0+
+
+cc_library(
+    name = "freeimage",
+    hdrs = ["include/FreeImage.h"],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lfreeimage",
+    ],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,14 @@
+# -*- python -*-
+
+licenses(["notice"])  # SGI-B-2.0
+
+cc_library(
+    name = "uuid",
+    hdrs = glob(["include/**/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L/usr/lib/x86_64-linux-gnu",
+        "-luuid",
+    ],
+    visibility = ["//visibility:public"],
+)
