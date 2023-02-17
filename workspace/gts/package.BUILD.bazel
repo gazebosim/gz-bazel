@@ -1,0 +1,21 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+licenses(["restricted"])  # LGPL-2.0+
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "gts",
+    hdrs = ["include/gts.h", "include/gtsconfig.h"],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lgts",
+    ],
+    deps = [
+        "@glib",
+    ],
+)
