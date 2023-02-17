@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "zmq",
+    hdrs = glob([
+        "include/zmq.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lzmq",
+    ],
+    visibility = ["//visibility:public"],
+)

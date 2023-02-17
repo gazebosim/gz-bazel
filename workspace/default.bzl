@@ -16,8 +16,10 @@ load("@gz//bazel/workspace/gts:repository.bzl", "gts_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
 load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
+load("@gz//bazel/workspace/sqlite3:repository.bzl", "sqlite3_repository")  # noqa
 load("@gz//bazel/workspace/tinyxml2:repository.bzl", "tinyxml2_repository")  # noqa
 load("@gz//bazel/workspace/uuid:repository.bzl", "uuid_repository")  # noqa
+load("@gz//bazel/workspace/zmq:repository.bzl", "zmq_repository")  # noqa
 
 def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
     """Declares workspace repositories for all externals needed by drake (other
@@ -56,10 +58,14 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         rules_proto_repository(name = "rules_proto", mirrors = mirrors)
     if "rules_python" not in excludes:
         rules_python_repository(name = "rules_python", mirrors = mirrors)
+    if "sqlite3" not in excludes:
+        sqlite3_repository(name = "sqlite3")
     if "tinyxml2" not in excludes:
         tinyxml2_repository(name = "tinyxml2")
     if "uuid" not in excludes:
         uuid_repository(name = "uuid")
+    if "zmq" not in excludes:
+        zmq_repository(name = "zmq")
 
 def add_default_toolchains(excludes = []):
     """Register toolchains for each language (e.g., "py") not explicitly
