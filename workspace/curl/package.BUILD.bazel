@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "curl",
+    hdrs = glob([
+      "include/curl/*.h"
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lcurl",
+    ],
+    visibility = ["//visibility:public"],
+)

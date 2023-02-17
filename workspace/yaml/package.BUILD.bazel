@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "yaml",
+    hdrs = glob([
+        "include/yaml.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lyaml",
+    ],
+    visibility = ["//visibility:public"],
+)

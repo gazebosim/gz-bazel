@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "jsoncpp",
+    hdrs = glob([
+        "include/jsoncpp/json/*.h",
+    ]),
+    includes = ["include/jsoncpp"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-ljsoncpp",
+    ],
+    visibility = ["//visibility:public"],
+)
