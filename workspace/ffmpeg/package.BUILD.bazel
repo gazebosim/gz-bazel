@@ -1,0 +1,84 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+licenses(["restricted"])  # LGPL-2.0+
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "libavcodec",
+    hdrs = glob(["include/libavcodec/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lavcodec",
+    ],
+)
+
+cc_library(
+    name = "libavdevice",
+    hdrs = glob(["include/libavdevice/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lavdevice",
+    ],
+)
+
+cc_library(
+    name = "libavfilter",
+    hdrs = glob(["include/libavfilter/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lavfilter",
+    ],
+)
+
+cc_library(
+    name = "libavformat",
+    hdrs = glob(["include/libavformat/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lavformat",
+    ],
+)
+
+cc_library(
+    name = "libavresample",
+    hdrs = glob(["include/libavresample/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lavresample",
+    ],
+)
+
+cc_library(
+    name = "libswscale",
+    hdrs = glob(["include/libswscale/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lswscale",
+    ],
+)
+
+cc_library(
+    name = "libavutil",
+    hdrs = glob(["include/libavutil/*.h"]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lavutil",
+    ],
+)

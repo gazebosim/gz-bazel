@@ -1,0 +1,14 @@
+# -*- python -*-
+
+licenses(["notice"])  # BSD-3-Clause
+
+cc_library(
+    name = "cli11",
+    hdrs = glob([
+        "include/CLI/*.hpp",
+    ]),
+    includes = [
+        "include",
+    ],
+    visibility = ["//visibility:public"],
+)

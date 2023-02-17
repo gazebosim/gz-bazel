@@ -2,11 +2,22 @@
 
 load("@gz//bazel/workspace:mirrors.bzl", "DEFAULT_MIRRORS")
 load("@gz//bazel/workspace:os.bzl", "os_repository")
+load("@gz//bazel/workspace/assimp:repository.bzl", "assimp_repository")  # noqa
 load("@gz//bazel/workspace/bazel_skylib:repository.bzl", "bazel_skylib_repository")  # noqa
 load("@gz//bazel/workspace/buildifier:repository.bzl", "buildifier_repository")  # noqa
+load("@gz//bazel/workspace/cli11:repository.bzl", "cli11_repository")  # noqa
+load("@gz//bazel/workspace/eigen3:repository.bzl", "eigen3_repository")  # noqa
+load("@gz//bazel/workspace/ffmpeg:repository.bzl", "ffmpeg_repository")  # noqa
+load("@gz//bazel/workspace/freeimage:repository.bzl", "freeimage_repository")  # noqa
+load("@gz//bazel/workspace/gdal:repository.bzl", "gdal_repository")  # noqa
+load("@gz//bazel/workspace/glib:repository.bzl", "glib_repository")  # noqa
+load("@gz//bazel/workspace/gtest:repository.bzl", "gtest_repository")  # noqa
+load("@gz//bazel/workspace/gts:repository.bzl", "gts_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
 load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
+load("@gz//bazel/workspace/tinyxml2:repository.bzl", "tinyxml2_repository")  # noqa
+load("@gz//bazel/workspace/uuid:repository.bzl", "uuid_repository")  # noqa
 
 def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
     """Declares workspace repositories for all externals needed by drake (other
@@ -17,16 +28,38 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
           be useful if a WORKSPACE file has already supplied its own external
           of a given name.
     """
+    if "assimp" not in excludes:
+        assimp_repository(name = "assimp")
     if "bazel_skylib" not in excludes:
         bazel_skylib_repository(name = "bazel_skylib", mirrors = mirrors)
     if "buildifier" not in excludes:
         buildifier_repository(name = "buildifier", mirrors = mirrors)
+    if "cli11" not in excludes:
+        cli11_repository(name = "cli11", mirrors = mirrors)
+    if "eigen3" not in excludes:
+        eigen3_repository(name = "eigen3")
+    if "ffmpeg" not in excludes:
+        ffmpeg_repository(name = "ffmpeg")
+    if "freeimage" not in excludes:
+        freeimage_repository(name = "freeimage")
+    if "gdal" not in excludes:
+        gdal_repository(name = "gdal")
+    if "glib" not in excludes:
+        glib_repository(name = "glib")
+    if "gtest" not in excludes:
+        gtest_repository(name = "gtest", mirrors = mirrors)
+    if "gts" not in excludes:
+        gts_repository(name = "gts")
     if "pycodestyle" not in excludes:
         pycodestyle_repository(name = "pycodestyle", mirrors = mirrors)
     if "rules_proto" not in excludes:
         rules_proto_repository(name = "rules_proto", mirrors = mirrors)
     if "rules_python" not in excludes:
         rules_python_repository(name = "rules_python", mirrors = mirrors)
+    if "tinyxml2" not in excludes:
+        tinyxml2_repository(name = "tinyxml2")
+    if "uuid" not in excludes:
+        uuid_repository(name = "uuid")
 
 def add_default_toolchains(excludes = []):
     """Register toolchains for each language (e.g., "py") not explicitly

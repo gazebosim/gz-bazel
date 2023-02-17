@@ -1,0 +1,15 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "gdal",
+    hdrs = glob(["include/gdal/*.h"]),
+    includes = ["include/gdal"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lgdal",
+    ],
+    visibility = ["//visibility:public"],
+)
