@@ -7,12 +7,17 @@ load("@gz//bazel/workspace/bazel_skylib:repository.bzl", "bazel_skylib_repositor
 load("@gz//bazel/workspace/buildifier:repository.bzl", "buildifier_repository")  # noqa
 load("@gz//bazel/workspace/cli11:repository.bzl", "cli11_repository")  # noqa
 load("@gz//bazel/workspace/eigen3:repository.bzl", "eigen3_repository")  # noqa
+load("@gz//bazel/workspace/fcl:repository.bzl", "fcl_repository")  # noqa
 load("@gz//bazel/workspace/ffmpeg:repository.bzl", "ffmpeg_repository")  # noqa
+load("@gz//bazel/workspace/fmt:repository.bzl", "fmt_repository")  # noqa
 load("@gz//bazel/workspace/freeimage:repository.bzl", "freeimage_repository")  # noqa
 load("@gz//bazel/workspace/gdal:repository.bzl", "gdal_repository")  # noqa
 load("@gz//bazel/workspace/glib:repository.bzl", "glib_repository")  # noqa
 load("@gz//bazel/workspace/gtest:repository.bzl", "gtest_repository")  # noqa
 load("@gz//bazel/workspace/gts:repository.bzl", "gts_repository")  # noqa
+load("@gz//bazel/workspace/nlopt:repository.bzl", "nlopt_repository")  # noqa
+load("@gz//bazel/workspace/ode:repository.bzl", "ode_repository")  # noqa
+load("@gz//bazel/workspace/osg:repository.bzl", "osg_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
 load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
@@ -40,8 +45,12 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         cli11_repository(name = "cli11", mirrors = mirrors)
     if "eigen3" not in excludes:
         eigen3_repository(name = "eigen3")
+    if "fcl" not in excludes:
+        fcl_repository(name = "fcl")
     if "ffmpeg" not in excludes:
         ffmpeg_repository(name = "ffmpeg")
+    if "fmt" not in excludes:
+        fmt_repository(name = "fmt")
     if "freeimage" not in excludes:
         freeimage_repository(name = "freeimage")
     if "gdal" not in excludes:
@@ -52,6 +61,12 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         gtest_repository(name = "gtest", mirrors = mirrors)
     if "gts" not in excludes:
         gts_repository(name = "gts")
+    if "nlopt" not in excludes:
+        nlopt_repository(name = "nlopt")
+    if "ode" not in excludes:
+        ode_repository(name = "ode")
+    if "osg" not in excludes:
+        osg_repository(name = "osg")
     if "pycodestyle" not in excludes:
         pycodestyle_repository(name = "pycodestyle", mirrors = mirrors)
     if "rules_proto" not in excludes:

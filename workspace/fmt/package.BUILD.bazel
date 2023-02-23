@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "fmt",
+    hdrs = glob([
+        "include/fmt/*.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lfmt",
+    ],
+    visibility = ["//visibility:public"],
+)

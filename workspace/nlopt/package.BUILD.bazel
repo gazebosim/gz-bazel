@@ -1,0 +1,15 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "nlopt",
+    hdrs = ["include/nlopt.h"],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lnlopt",
+    ],
+    visibility = ["//visibility:public"],
+)

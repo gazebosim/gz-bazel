@@ -34,7 +34,8 @@ mkdir -p ${WORKSPACE}/bazel
 cd ${WORKSPACE}
 shopt -s extglob
 # Copy relevant bazel files into the build space
-cp -R ${GITHUB_WORKSPACE}/!(gz|.git|.github|bazel_cache) ${WORKSPACE}/bazel
+cp -R ${GITHUB_WORKSPACE}/!(gz|.git|bazel_cache) ${WORKSPACE}/bazel
+cp -R ${GITHUB_WORKSPACE}/.github ${WORKSPACE}/bazel
 vcs import . < ${WORKSPACE}/bazel/example/bazel.repos
 
 echo ::group::Install dependencies from binaries
