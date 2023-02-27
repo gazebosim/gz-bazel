@@ -26,5 +26,5 @@ def _impl(repository_ctx):
 jsoncpp_repository = repository_rule(
     local = True,
     configure = True,
-    implementation = _impl
+    implementation = _impl,
 )

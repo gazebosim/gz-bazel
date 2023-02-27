@@ -5,7 +5,7 @@ load(":vars.bzl", "LIBDIR")
 cc_library(
     name = "curl",
     hdrs = glob([
-      "include/curl/*.h"
+        "include/curl/*.h",
     ]),
     includes = ["include"],
     linkopts = [
