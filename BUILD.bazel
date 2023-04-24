@@ -11,6 +11,6 @@ package(
     features = GZ_FEATURES,
 )
 
-licenses(["notice"])  # BSD-3-Clause
+licenses(["notice"])
 
 add_lint_tests()
