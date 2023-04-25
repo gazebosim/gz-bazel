@@ -1,0 +1,18 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "glut",
+    hdrs = [
+        "include/GL/glut.h",
+        "include/GL/freeglut_std.h",
+    ],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lglut",
+    ],
+    visibility = ["//visibility:public"],
+)
