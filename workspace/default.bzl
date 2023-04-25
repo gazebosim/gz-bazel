@@ -14,6 +14,7 @@ load("@gz//bazel/workspace/fmt:repository.bzl", "fmt_repository")  # noqa
 load("@gz//bazel/workspace/freeimage:repository.bzl", "freeimage_repository")  # noqa
 load("@gz//bazel/workspace/gdal:repository.bzl", "gdal_repository")  # noqa
 load("@gz//bazel/workspace/glib:repository.bzl", "glib_repository")  # noqa
+load("@gz//bazel/workspace/glut:repository.bzl", "glut_repository")  # noqa
 load("@gz//bazel/workspace/gtest:repository.bzl", "gtest_repository")  # noqa
 load("@gz//bazel/workspace/gts:repository.bzl", "gts_repository")  # noqa
 load("@gz//bazel/workspace/jsoncpp:repository.bzl", "jsoncpp_repository")  # noqa
@@ -63,6 +64,8 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         gdal_repository(name = "gdal")
     if "glib" not in excludes:
         glib_repository(name = "glib")
+    if "glut" not in excludes:
+        glut_repository(name = "glut")
     if "gtest" not in excludes:
         gtest_repository(name = "gtest", mirrors = mirrors)
     if "gts" not in excludes:
