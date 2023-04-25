@@ -8,7 +8,8 @@ def _impl(repository_ctx):
 
     if os_result.is_ubuntu:
         libdir = "/usr/lib/x86_64-linux-gnu"
-        repository_ctx.symlink("/usr/include/x86_64-linux-gnu/curl", "include/curl")
+        repository_ctx.symlink(
+            "/usr/include/x86_64-linux-gnu/curl", "include/curl")
 
     # Declare the libdir
     repository_ctx.file(
