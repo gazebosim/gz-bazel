@@ -3,7 +3,7 @@ load(
     "generate_file",
 )
 
-def gz_export_header(name, lib_name, export_base, visibility):
+def gz_export_header(name, lib_name, export_base, visibility, **kwargs):
     generate_file(
         name = name,
         visibility = visibility,
@@ -65,4 +65,5 @@ def gz_export_header(name, lib_name, export_base, visibility):
 
 #endif
 """.format(lib_name = lib_name, export_base = export_base),
+        **kwargs
     )
