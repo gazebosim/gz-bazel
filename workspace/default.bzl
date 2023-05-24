@@ -12,8 +12,11 @@ load("@gz//bazel/workspace/fcl:repository.bzl", "fcl_repository")  # noqa
 load("@gz//bazel/workspace/ffmpeg:repository.bzl", "ffmpeg_repository")  # noqa
 load("@gz//bazel/workspace/fmt:repository.bzl", "fmt_repository")  # noqa
 load("@gz//bazel/workspace/freeimage:repository.bzl", "freeimage_repository")  # noqa
+load("@gz//bazel/workspace/freetype2:repository.bzl", "freetype2_repository")  # noqa
 load("@gz//bazel/workspace/gdal:repository.bzl", "gdal_repository")  # noqa
+load("@gz//bazel/workspace/gl:repository.bzl", "gl_repository")  # noqa
 load("@gz//bazel/workspace/glib:repository.bzl", "glib_repository")  # noqa
+load("@gz//bazel/workspace/glslang:repository.bzl", "glslang_repository")  # noqa
 load("@gz//bazel/workspace/glut:repository.bzl", "glut_repository")  # noqa
 load("@gz//bazel/workspace/gtest:repository.bzl", "gtest_repository")  # noqa
 load("@gz//bazel/workspace/gts:repository.bzl", "gts_repository")  # noqa
@@ -24,9 +27,11 @@ load("@gz//bazel/workspace/osg:repository.bzl", "osg_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
 load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
+load("@gz//bazel/workspace/sdl2:repository.bzl", "sdl2_repository")  # noqa
 load("@gz//bazel/workspace/sqlite3:repository.bzl", "sqlite3_repository")  # noqa
 load("@gz//bazel/workspace/tinyxml2:repository.bzl", "tinyxml2_repository")  # noqa
 load("@gz//bazel/workspace/uuid:repository.bzl", "uuid_repository")  # noqa
+load("@gz//bazel/workspace/vulkan:repository.bzl", "vulkan_repository")  # noqa
 load("@gz//bazel/workspace/yaml:repository.bzl", "yaml_repository")  # noqa
 load("@gz//bazel/workspace/zip:repository.bzl", "zip_repository")  # noqa
 load("@gz//bazel/workspace/zmq:repository.bzl", "zmq_repository")  # noqa
@@ -60,10 +65,16 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         fmt_repository(name = "fmt")
     if "freeimage" not in excludes:
         freeimage_repository(name = "freeimage")
+    if "freetype2" not in excludes:
+        freetype2_repository(name = "freetype2")
     if "gdal" not in excludes:
         gdal_repository(name = "gdal")
+    if "gl" not in excludes:
+        gl_repository(name = "gl")
     if "glib" not in excludes:
         glib_repository(name = "glib")
+    if "glslang" not in excludes:
+        glslang_repository(name = "glslang")
     if "glut" not in excludes:
         glut_repository(name = "glut")
     if "gtest" not in excludes:
@@ -84,12 +95,16 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         rules_proto_repository(name = "rules_proto", mirrors = mirrors)
     if "rules_python" not in excludes:
         rules_python_repository(name = "rules_python", mirrors = mirrors)
+    if "sdl2" not in excludes:
+        sdl2_repository(name = "sdl2")
     if "sqlite3" not in excludes:
         sqlite3_repository(name = "sqlite3")
     if "tinyxml2" not in excludes:
         tinyxml2_repository(name = "tinyxml2")
     if "uuid" not in excludes:
         uuid_repository(name = "uuid")
+    if "vulkan" not in excludes:
+        vulkan_repository(name = "vulkan")
     if "yaml" not in excludes:
         yaml_repository(name = "yaml")
     if "zip" not in excludes:

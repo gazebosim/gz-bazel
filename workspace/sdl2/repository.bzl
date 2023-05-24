@@ -7,10 +7,11 @@ def _impl(repository_ctx):
         fail(os_result.error)
 
     if os_result.is_ubuntu:
-        libdir = "/usr/lib/x86_64-linux-gnu"
+        libdir = "/usr/lib/x86_64-linux-gnu/"
+        repository_ctx.symlink("/usr/include/SDL2", "include/SDL2")
         repository_ctx.symlink(
-            "/usr/include/x86_64-linux-gnu/curl",
-            "include/curl",
+            "/usr/include/x86_64-linux-gnu/SDL2",
+            "include/x86_64-linux-gnu/SDL2",
         )
 
     # Declare the libdir
@@ -22,11 +23,11 @@ def _impl(repository_ctx):
 
     # Add the BUILD file.
     repository_ctx.symlink(
-        Label("@gz//bazel/workspace/curl:package.BUILD.bazel"),
+        Label("@gz//bazel/workspace/sdl2:package.BUILD.bazel"),
         "BUILD.bazel",
     )
 
-curl_repository = repository_rule(
+sdl2_repository = repository_rule(
     local = True,
     configure = True,
     implementation = _impl,

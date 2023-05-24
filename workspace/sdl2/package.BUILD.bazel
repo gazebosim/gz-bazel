@@ -1,0 +1,18 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "sdl2",
+    hdrs = glob([
+        "include/SDL2/*.h",
+        "include/x86_64-linux-gnu/SDL2/*.h",
+    ]),
+    includes = ["include/SDL2", "include/x86_64-linux-gnu/SDL2"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lSDL2",
+    ],
+    visibility = ["//visibility:public"],
+)

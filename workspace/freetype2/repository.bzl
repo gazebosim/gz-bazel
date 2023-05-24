@@ -8,10 +8,7 @@ def _impl(repository_ctx):
 
     if os_result.is_ubuntu:
         libdir = "/usr/lib/x86_64-linux-gnu"
-        repository_ctx.symlink(
-            "/usr/include/x86_64-linux-gnu/curl",
-            "include/curl",
-        )
+        repository_ctx.symlink("/usr/include/freetype2", "include/freetype2")  # noqa
 
     # Declare the libdir
     repository_ctx.file(
@@ -22,11 +19,11 @@ def _impl(repository_ctx):
 
     # Add the BUILD file.
     repository_ctx.symlink(
-        Label("@gz//bazel/workspace/curl:package.BUILD.bazel"),
+        Label("@gz//bazel/workspace/freetype2:package.BUILD.bazel"),
         "BUILD.bazel",
     )
 
-curl_repository = repository_rule(
+freetype2_repository = repository_rule(
     local = True,
     configure = True,
     implementation = _impl,

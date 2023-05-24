@@ -1,0 +1,56 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+licenses(["notice"])
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "GL",
+    hdrs = [
+        "include/GL/gl.h",
+        "include/GL/glcorearb.h",
+        "include/GL/glext.h",
+        "include/KHR/khrplatform.h",
+    ],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lGL",
+    ],
+    includes = ["include"],
+)
+
+cc_library(
+    name = "GLX",
+    hdrs = [
+        "include/GL/glx.h",
+        "include/GL/glxext.h",
+    ],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lGLX",
+    ],
+    includes = ["include"],
+)
+
+cc_library(
+    name = "EGL",
+    hdrs = [
+        "include/EGL/egl.h",
+        "include/EGL/eglext.h",
+        "include/EGL/eglplatform.h",
+        "include/GLES/egl.h",
+        "include/GLES/gl.h",
+        "include/GLES/glext.h",
+        "include/GLES/glplatform.h",
+    ],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lEGL",
+    ],
+    includes = ["include"],
+)

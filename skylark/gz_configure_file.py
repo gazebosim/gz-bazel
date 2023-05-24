@@ -105,14 +105,14 @@ def _setup_definitions(args):
         else:
             result[item] = 1
 
-    for item in args.undefines:
-        result[item] = None
-
     for filename in args.cmakelists:
         with open(filename, 'r') as cmakelist:
             for line in cmakelist.readlines():
                 definition = _extract_definition(line, result)
                 result.update(definition)
+
+    for item in args.undefines:
+        result[item] = None
 
     return result
 

@@ -8,10 +8,10 @@ def _impl(repository_ctx):
 
     if os_result.is_ubuntu:
         libdir = "/usr/lib/x86_64-linux-gnu"
-        repository_ctx.symlink(
-            "/usr/include/x86_64-linux-gnu/curl",
-            "include/curl",
-        )
+        repository_ctx.symlink("/usr/include/EGL/", "include/EGL/")
+        repository_ctx.symlink("/usr/include/GL/", "include/GL/")
+        repository_ctx.symlink("/usr/include/GLES/", "include/GLES/")
+        repository_ctx.symlink("/usr/include/KHR/", "include/KHR/")
 
     # Declare the libdir
     repository_ctx.file(
@@ -22,11 +22,11 @@ def _impl(repository_ctx):
 
     # Add the BUILD file.
     repository_ctx.symlink(
-        Label("@gz//bazel/workspace/curl:package.BUILD.bazel"),
+        Label("@gz//bazel/workspace/gl:package.BUILD.bazel"),
         "BUILD.bazel",
     )
 
-curl_repository = repository_rule(
+gl_repository = repository_rule(
     local = True,
     configure = True,
     implementation = _impl,
