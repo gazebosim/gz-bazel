@@ -8,7 +8,7 @@ def rules_proto_repository(
     github_archive(
         name = name,
         repository = "bazelbuild/rules_proto",  # License: Apache-2.0
-        commit = "4.0.0",
-        sha256 = "66bfdf8782796239d3875d37e7de19b1d94301e8972b3cbd2446b332429b4df1",  # noqa
+        commit = "5.3.0-21.7",
+        sha256 = "dc3fb206a2cb3441b485eb1e423165b231235a1ea9b031b4433cf7bc1fa460dd",  # noqa
         mirrors = mirrors,
     )

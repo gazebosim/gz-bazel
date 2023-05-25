@@ -13,6 +13,9 @@ build --strict_system_includes
 build --workspace_status_command=./bazel/workspace/workspace-status.bash
 build --define enable_ifaddrs=true
 
+build --fission=dbg
+build --features=per_object_debug_info
+
 test --define enable_ifaddrs=true
 
 # -- Options for explicitly using GCC.
