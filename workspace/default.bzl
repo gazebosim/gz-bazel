@@ -32,6 +32,8 @@ load("@gz//bazel/workspace/sqlite3:repository.bzl", "sqlite3_repository")  # noq
 load("@gz//bazel/workspace/tinyxml2:repository.bzl", "tinyxml2_repository")  # noqa
 load("@gz//bazel/workspace/uuid:repository.bzl", "uuid_repository")  # noqa
 load("@gz//bazel/workspace/vulkan:repository.bzl", "vulkan_repository")  # noqa
+load("@gz//bazel/workspace/X11:repository.bzl", "X11_repository")  # noqa
+load("@gz//bazel/workspace/xcb:repository.bzl", "xcb_repository")  # noqa
 load("@gz//bazel/workspace/yaml:repository.bzl", "yaml_repository")  # noqa
 load("@gz//bazel/workspace/zip:repository.bzl", "zip_repository")  # noqa
 load("@gz//bazel/workspace/zmq:repository.bzl", "zmq_repository")  # noqa
@@ -105,6 +107,10 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         uuid_repository(name = "uuid")
     if "vulkan" not in excludes:
         vulkan_repository(name = "vulkan")
+    if "X11" not in excludes:
+        X11_repository(name = "X11")
+    if "xcb" not in excludes:
+        xcb_repository(name = "xcb")
     if "yaml" not in excludes:
         yaml_repository(name = "yaml")
     if "zip" not in excludes:
