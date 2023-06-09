@@ -13,7 +13,6 @@ generate_file = rule(
         "content": attr.string(mandatory = True),
         "is_executable": attr.bool(default = False),
     },
-    output_to_genfiles = True,
     implementation = _generate_file_impl,
 )
 

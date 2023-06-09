@@ -21,7 +21,6 @@ gz_include_header = rule(
         "strip_prefix": attr.string_list(default = ["**/include/"]),
         "out": attr.output(mandatory = True),
     },
-    output_to_genfiles = True,
     implementation = _generate_include_header_impl,
 )
 

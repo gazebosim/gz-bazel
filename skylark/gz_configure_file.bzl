@@ -51,7 +51,6 @@ _gz_configure_file_gen = rule(
             allow_empty = True,
         ),
     },
-    output_to_genfiles = True,
     implementation = _gz_configure_file_impl,
 )
 
