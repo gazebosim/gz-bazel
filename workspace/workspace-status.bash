@@ -5,11 +5,13 @@ WORKSPACE=`pwd`
 LIBS=(
   common
   fuel_tools
+  gui
   math
   msgs
   physics
   plugin
   rendering
+  sensors
   transport
   utils
   sdformat)

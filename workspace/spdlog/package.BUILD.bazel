@@ -1,0 +1,20 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "spdlog",
+    hdrs = glob([
+      "include/spdlog/*.h",
+      "include/spdlog/**/*.h",
+      "include/spdlog/**/*-inl.h",
+      "include/spdlog/fmt/**"
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lspdlog",
+    ],
+    visibility = ["//visibility:public"],
+)

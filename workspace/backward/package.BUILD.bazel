@@ -1,0 +1,42 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "dw",
+    hdrs = glob([
+      "include/dwarf.h",
+      "include/elfutils/*.h",
+    ]),
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-ldw",
+    ],
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "dwarf",
+    hdrs = [
+      "include/libdwarf/dwarf.h",
+      "include/libdwarf/libdwarf.h",
+    ],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-ldwarf",
+    ],
+    includes = ["include/libdwarf"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "backward",
+    hdrs = ["include/backward.hpp"],
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    defines = ["BACKWARD_HAS_DW=1"],
+    deps = [":dw"]
+)
