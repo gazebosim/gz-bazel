@@ -15,6 +15,10 @@ repositories:
     type: git
     url: https://github.com/gazebosim/gz-fuel-tools
     version: gz-fuel-tools8
+  gui:
+    type: git
+    url: https://github.com/gazebosim/gz-gui
+    version: mjcarroll/garden_bazel
   math:
     type: git
     url: https://github.com/gazebosim/gz-math
@@ -22,7 +26,7 @@ repositories:
   msgs:
     type: git
     url: https://github.com/gazebosim/gz-msgs
-    version: mjcarroll/garden_bazel
+    version: gz-msgs9
   physics:
     type: git
     url: https://github.com/gazebosim/gz-physics
@@ -31,10 +35,18 @@ repositories:
     type: git
     url: https://github.com/gazebosim/gz-plugin
     version: gz-plugin2
+  rendering:
+    type: git
+    url: https://github.com/gazebosim/gz-rendering
+    version: mjcarroll/garden_bazel
   sdformat:
     type: git
     url: https://github.com/gazebosim/sdformat
     version: sdf13
+  sensors:
+    type: git
+    url: https://github.com/gazebosim/gz-sensors
+    version: mjcarroll/garden_bazel
   transport:
     type: git
     url: https://github.com/gazebosim/gz-transport
