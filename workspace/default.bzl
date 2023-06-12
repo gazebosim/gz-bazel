@@ -103,7 +103,7 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
     if "rules_python" not in excludes:
         rules_python_repository(name = "rules_python", mirrors = mirrors)
     if "rules_qt" not in excludes:
-        rules_qt_repository(name = "com_justbuchanan_rules_qt", mirrors = mirrors)
+        rules_qt_repository(name = "com_justbuchanan_rules_qt", mirrors = mirrors)  # noqa
     if "sdl2" not in excludes:
         sdl2_repository(name = "sdl2")
     if "spdlog" not in excludes:

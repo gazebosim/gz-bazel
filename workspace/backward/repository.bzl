@@ -11,7 +11,10 @@ def _impl(repository_ctx):
         repository_ctx.symlink("/usr/include/libdwarf", "include/libdwarf")
         repository_ctx.symlink("/usr/include/dwarf.h", "include/dwarf.h")
         repository_ctx.symlink("/usr/include/elfutils", "include/elfutils")
-        repository_ctx.symlink("/usr/include/backward.hpp", "include/backward.hpp")
+        repository_ctx.symlink(
+            "/usr/include/backward.hpp",
+            "include/backward.hpp",
+        )
 
     # Declare the libdir
     repository_ctx.file(
