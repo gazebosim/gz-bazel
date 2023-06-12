@@ -5,8 +5,8 @@ load(":vars.bzl", "LIBDIR")
 cc_library(
     name = "dw",
     hdrs = glob([
-      "include/dwarf.h",
-      "include/elfutils/*.h",
+        "include/dwarf.h",
+        "include/elfutils/*.h",
     ]),
     linkopts = [
         "-L" + LIBDIR,
@@ -20,8 +20,8 @@ cc_library(
 cc_library(
     name = "dwarf",
     hdrs = [
-      "include/libdwarf/dwarf.h",
-      "include/libdwarf/libdwarf.h",
+        "include/libdwarf/dwarf.h",
+        "include/libdwarf/libdwarf.h",
     ],
     linkopts = [
         "-L" + LIBDIR,
@@ -38,5 +38,5 @@ cc_library(
     includes = ["include"],
     visibility = ["//visibility:public"],
     defines = ["BACKWARD_HAS_DW=1"],
-    deps = [":dw"]
+    deps = [":dw"],
 )

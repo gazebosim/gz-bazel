@@ -5,10 +5,10 @@ load(":vars.bzl", "LIBDIR")
 cc_library(
     name = "spdlog",
     hdrs = glob([
-      "include/spdlog/*.h",
-      "include/spdlog/**/*.h",
-      "include/spdlog/**/*-inl.h",
-      "include/spdlog/fmt/**"
+        "include/spdlog/*.h",
+        "include/spdlog/**/*.h",
+        "include/spdlog/**/*-inl.h",
+        "include/spdlog/fmt/**",
     ]),
     includes = ["include"],
     linkopts = [

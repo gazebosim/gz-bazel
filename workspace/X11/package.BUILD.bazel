@@ -3,15 +3,15 @@
 load(":vars.bzl", "LIBDIR")
 
 cc_library(
-  name = "Xlib-xcb",
-  hdrs = [
-    "include/X11/Xlib-xcb.h"
-  ],
-  includes = ["include"],
-  linkopts = [
-      "-L" + LIBDIR,
-      "-Wl,-rpath," + LIBDIR,
-      "-lX11-xcb",
-  ],
-  visibility = ["//visibility:public"],
+    name = "Xlib-xcb",
+    hdrs = [
+        "include/X11/Xlib-xcb.h",
+    ],
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lX11-xcb",
+    ],
+    visibility = ["//visibility:public"],
 )
