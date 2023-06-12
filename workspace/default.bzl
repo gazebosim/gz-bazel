@@ -3,6 +3,7 @@
 load("@gz//bazel/workspace:mirrors.bzl", "DEFAULT_MIRRORS")
 load("@gz//bazel/workspace:os.bzl", "os_repository")
 load("@gz//bazel/workspace/assimp:repository.bzl", "assimp_repository")  # noqa
+load("@gz//bazel/workspace/backward:repository.bzl", "backward_repository")  # noqa
 load("@gz//bazel/workspace/bazel_skylib:repository.bzl", "bazel_skylib_repository")  # noqa
 load("@gz//bazel/workspace/buildifier:repository.bzl", "buildifier_repository")  # noqa
 load("@gz//bazel/workspace/cli11:repository.bzl", "cli11_repository")  # noqa
@@ -27,11 +28,15 @@ load("@gz//bazel/workspace/osg:repository.bzl", "osg_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
 load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
+load("@gz//bazel/workspace/rules_qt:repository.bzl", "rules_qt_repository")  # noqa
 load("@gz//bazel/workspace/sdl2:repository.bzl", "sdl2_repository")  # noqa
+load("@gz//bazel/workspace/spdlog:repository.bzl", "spdlog_repository")  # noqa
 load("@gz//bazel/workspace/sqlite3:repository.bzl", "sqlite3_repository")  # noqa
 load("@gz//bazel/workspace/tinyxml2:repository.bzl", "tinyxml2_repository")  # noqa
 load("@gz//bazel/workspace/uuid:repository.bzl", "uuid_repository")  # noqa
 load("@gz//bazel/workspace/vulkan:repository.bzl", "vulkan_repository")  # noqa
+load("@gz//bazel/workspace/X11:repository.bzl", "X11_repository")  # noqa
+load("@gz//bazel/workspace/xcb:repository.bzl", "xcb_repository")  # noqa
 load("@gz//bazel/workspace/yaml:repository.bzl", "yaml_repository")  # noqa
 load("@gz//bazel/workspace/zip:repository.bzl", "zip_repository")  # noqa
 load("@gz//bazel/workspace/zmq:repository.bzl", "zmq_repository")  # noqa
@@ -47,6 +52,8 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
     """
     if "assimp" not in excludes:
         assimp_repository(name = "assimp")
+    if "backward" not in excludes:
+        backward_repository(name = "backward")
     if "bazel_skylib" not in excludes:
         bazel_skylib_repository(name = "bazel_skylib", mirrors = mirrors)
     if "buildifier" not in excludes:
@@ -95,8 +102,12 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         rules_proto_repository(name = "rules_proto", mirrors = mirrors)
     if "rules_python" not in excludes:
         rules_python_repository(name = "rules_python", mirrors = mirrors)
+    if "rules_qt" not in excludes:
+        rules_qt_repository(name = "com_justbuchanan_rules_qt", mirrors = mirrors)  # noqa
     if "sdl2" not in excludes:
         sdl2_repository(name = "sdl2")
+    if "spdlog" not in excludes:
+        spdlog_repository(name = "spdlog")
     if "sqlite3" not in excludes:
         sqlite3_repository(name = "sqlite3")
     if "tinyxml2" not in excludes:
@@ -105,6 +116,10 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         uuid_repository(name = "uuid")
     if "vulkan" not in excludes:
         vulkan_repository(name = "vulkan")
+    if "X11" not in excludes:
+        X11_repository(name = "X11")
+    if "xcb" not in excludes:
+        xcb_repository(name = "xcb")
     if "yaml" not in excludes:
         yaml_repository(name = "yaml")
     if "zip" not in excludes:

@@ -1,0 +1,10 @@
+build:memcheck --build_tests_only
+build:memcheck --copt -gdwarf-4
+# https://sourceforge.net/p/valgrind/mailman/valgrind-developers/?viewmonth=201806&viewday=11&style=flat
+build:memcheck --copt -O2
+build:memcheck --copt=-DNDEBUG                # Disable third-party asserts.
+build:memcheck --run_under=//bazel/dynamic_analysis:valgrind
+# Slowdown factor can range from 5-100.
+# See http://valgrind.org/info/about.html
+build:memcheck --test_timeout=1500,7500,22500,90000  # 25x
+build:memcheck --test_env=VALGRIND_OPTS

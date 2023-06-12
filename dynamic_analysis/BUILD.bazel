@@ -1,0 +1,9 @@
+load("//bazel/lint:lint.bzl", "add_lint_tests")
+
+package(default_visibility = ["//visibility:public"])
+
+sh_binary(
+    name = "valgrind",
+    srcs = ["valgrind.sh"],
+    data = ["valgrind.supp"],
+)
