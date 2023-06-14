@@ -1,8 +1,6 @@
-# Dart dependencies
 libnlopt-cxx-dev
 libfmt-dev
 libopenscenegraph-dev
-# Ogre-next dependencies
 libx11-xcb-dev
 libxcb-render0-dev
 rapidjson-dev
