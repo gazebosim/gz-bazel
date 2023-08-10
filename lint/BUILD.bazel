@@ -3,7 +3,7 @@ load(
     "add_lint_tests",
     "gz_py_binary",
     "gz_py_library",
-)
+t)
 
 package(default_visibility = ["//visibility:public"])
 
