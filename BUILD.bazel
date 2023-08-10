@@ -16,5 +16,3 @@ licenses(["notice"])
 exports_files(["LICENSE"])
 
 add_lint_tests()
-
-exports_files(["LICENSE"])
