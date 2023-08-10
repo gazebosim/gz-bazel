@@ -12,9 +12,12 @@ LIBS=(
   plugin
   rendering
   sensors
+  sim
+  tools
   transport
   utils
-  sdformat)
+  sdformat
+)
 
 for LIB in "${LIBS[@]}"
 do
