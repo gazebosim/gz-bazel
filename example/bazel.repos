@@ -14,7 +14,7 @@ repositories:
   fuel_tools:
     type: git
     url: https://github.com/gazebosim/gz-fuel-tools
-    version: gz-fuel-tools8
+    version: gz-fuel-tools9
   math:
     type: git
     url: https://github.com/gazebosim/gz-math
