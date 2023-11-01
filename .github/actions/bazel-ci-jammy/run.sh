@@ -43,6 +43,7 @@ EXCLUDE_APT="libignition|libgz|libsdformat|libogre|dart"
 UBUNTU_VERSION=`lsb_release -cs`
 ALL_PACKAGES=$( \
   sort -u $(find . -iname 'packages-'$UBUNTU_VERSION'.apt' -o -iname 'packages.apt') | grep -Ev $EXCLUDE_APT | tr '\n' ' ')
+sudo apt update
 sudo apt install --no-install-recommends --quiet --yes $ALL_PACKAGES
 echo ::endgroup::
 
