@@ -26,6 +26,7 @@ load("@gz//bazel/workspace/nlopt:repository.bzl", "nlopt_repository")  # noqa
 load("@gz//bazel/workspace/ode:repository.bzl", "ode_repository")  # noqa
 load("@gz//bazel/workspace/osg:repository.bzl", "osg_repository")  # noqa
 load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository")  # noqa
+load("@gz//bazel/workspace/rules_license:repository.bzl", "rules_license_repository")  # noqa
 load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
 load("@gz//bazel/workspace/rules_qt:repository.bzl", "rules_qt_repository")  # noqa
@@ -98,6 +99,8 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         osg_repository(name = "osg")
     if "pycodestyle" not in excludes:
         pycodestyle_repository(name = "pycodestyle", mirrors = mirrors)
+    if "rules_license" not in excludes:
+        rules_license_repository(name = "rules_license", mirrors = mirrors)
     if "rules_proto" not in excludes:
         rules_proto_repository(name = "rules_proto", mirrors = mirrors)
     if "rules_python" not in excludes:
