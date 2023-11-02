@@ -3,7 +3,7 @@
 load("@gz//bazel/workspace:generate_file.bzl", "generate_file")
 load(
     "@gz//bazel/skylark:build_defs.bzl",
-    "gz_py_binary"
+    "gz_py_binary",
 )
 
 licenses(["notice"])  # MIT
