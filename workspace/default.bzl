@@ -29,6 +29,7 @@ load("@gz//bazel/workspace/pycodestyle:repository.bzl", "pycodestyle_repository"
 load("@gz//bazel/workspace/rules_license:repository.bzl", "rules_license_repository")  # noqa
 load("@gz//bazel/workspace/rules_proto:repository.bzl", "rules_proto_repository")  # noqa
 load("@gz//bazel/workspace/rules_python:repository.bzl", "rules_python_repository")  # noqa
+load("@gz//bazel/workspace/rules_ruby:repository.bzl", "rules_ruby_repository")  # noqa
 load("@gz//bazel/workspace/rules_qt:repository.bzl", "rules_qt_repository")  # noqa
 load("@gz//bazel/workspace/sdl2:repository.bzl", "sdl2_repository")  # noqa
 load("@gz//bazel/workspace/spdlog:repository.bzl", "spdlog_repository")  # noqa
@@ -105,6 +106,8 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         rules_proto_repository(name = "rules_proto", mirrors = mirrors)
     if "rules_python" not in excludes:
         rules_python_repository(name = "rules_python", mirrors = mirrors)
+    if "rules_ruby" not in excludes:
+        rules_ruby_repository(name = "bazelruby_rules_ruby", mirrors = mirrors)
     if "rules_qt" not in excludes:
         rules_qt_repository(name = "com_justbuchanan_rules_qt", mirrors = mirrors)  # noqa
     if "sdl2" not in excludes:
