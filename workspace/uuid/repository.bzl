@@ -6,7 +6,7 @@ def _impl(repository_ctx):
     if os_result.error != None:
         fail(os_result.error)
 
-    if os_result.is_ubuntu or os_result.is_manylinux:
+    if os_result.is_ubuntu or os_result.is_debian or os_result.is_manylinux:
         build_flavor = "ubuntu"
         hdrs = [
             "uuid/uuid.h",
