@@ -6,7 +6,7 @@ def _impl(repository_ctx):
     if os_result.error != None:
         fail(os_result.error)
 
-    if os_result.is_ubuntu:
+    if os_result.is_ubuntu or os_result.is_debian:
         libdir = "/usr/lib/x86_64-linux-gnu"
         repository_ctx.symlink("/usr/include/gts.h", "include/gts.h")
         repository_ctx.symlink("/usr/include/gtsconfig.h", "include/gtsconfig.h")  # noqa

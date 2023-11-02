@@ -6,7 +6,7 @@ def _impl(repository_ctx):
     if os_result.error != None:
         fail(os_result.error)
 
-    if os_result.is_ubuntu:
+    if os_result.is_ubuntu or os_result.is_debian:
         repository_ctx.symlink("/usr/include/eigen3/Eigen", "include/eigen3/Eigen")  # noqa
         repository_ctx.symlink("/usr/include/eigen3/unsupported", "include/eigen3/unsupported")  # noqa
 

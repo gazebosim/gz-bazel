@@ -54,6 +54,7 @@ def _make_result(
         error = None,
         macos_release = None,
         ubuntu_release = None,
+        debian_release = None,
         is_wheel = False,
         homebrew_prefix = None):
     """Return a fully-populated struct result for determine_os, below."""
@@ -61,12 +62,15 @@ def _make_result(
     is_macos_wheel = (macos_release != None) and is_wheel
     is_ubuntu = (ubuntu_release != None) and not is_wheel
     is_manylinux = (ubuntu_release != None) and is_wheel
+    is_debian = (debian_release != None) and not is_wheel
     if is_macos:
         target = "macos"
     elif is_macos_wheel:
         target = "macos_wheel"
     elif is_ubuntu:
         target = "ubuntu"
+    elif is_debian:
+        target = "debian"
     elif is_manylinux:
         target = "manylinux"
     else:
@@ -77,10 +81,12 @@ def _make_result(
         is_macos = is_macos,
         is_macos_wheel = is_macos_wheel,
         is_ubuntu = is_ubuntu,
+        is_debian = is_debian,
         is_manylinux = is_manylinux,
         ubuntu_release = ubuntu_release,
         macos_release = macos_release,
         homebrew_prefix = homebrew_prefix,
+        debian_release = debian_release,
     )
 
 def _determine_linux(repository_ctx):
@@ -127,6 +133,24 @@ def _determine_linux(repository_ctx):
             error = (error_prologue +
                      "unsupported '%s' release '%s'" %
                      (distro, ubuntu_release)),
+        )
+    elif distro == "Debian":
+        lsb = exec_using_which(repository_ctx, ["lsb_release", "-sc"])
+        if lsb.error != None:
+            return _make_result(error = error_prologue + lsb.error)
+        debian_codename = lsb.stdout.strip()
+
+        if debian_codename in ["rodete"]:
+            return _make_result(
+                debian_release = debian_codename,
+                is_wheel = is_manylinux,
+            )
+
+        # Nothing matched.
+        return _make_result(
+            error = (error_prologue +
+                     "unsupported '%s' release '%s'" %
+                     (distro, debian_codename)),
         )
 
     # Nothing matched.

@@ -45,7 +45,7 @@ def _impl(repository_ctx):
     if os_result.is_macos:
         urls = darwin_urls
         sha256 = darwin_sha256
-    elif os_result.is_ubuntu or os_result.is_manylinux:
+    elif os_result.is_ubuntu or os_result.is_manylinux or os_result.is_debian:
         urls = linux_urls
         sha256 = linux_sha256
     else:
