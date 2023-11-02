@@ -1,12 +1,6 @@
 # -*- python -*-
 
-load("@gz//bazel/skylark:gz_py.bzl", "gz_py_binary")
-
-# Used by :python_env.bzl.
-config_setting(
-    name = "linux",
-    values = {"cpu": "k8"},
-)
+load(":build_defs.bzl", "gz_py_binary")
 
 gz_py_binary(
     name = "gz_configure_file",

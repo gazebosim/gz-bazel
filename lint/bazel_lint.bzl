@@ -1,7 +1,7 @@
 # -*- mode: python -*-
 # vi: set ft=python :
 
-load("@gz//bazel/skylark:gz_py.bzl", "py_test_isolated")
+load("@rules_python//python:defs.bzl", "py_test")
 
 #------------------------------------------------------------------------------
 # Internal helper; set up test given name and list of files. Will do nothing
@@ -17,7 +17,7 @@ def _bazel_lint(name, files, ignore):
         ignores_as_arg = ["--ignore=" + ",".join(ignores)]
         locations = ["$(locations %s)" % f for f in files]
 
-        py_test_isolated(
+        py_test(
             name = name + "_codestyle",
             size = "small",
             srcs = ["@gz//bazel/lint:bzlcodestyle"],
@@ -27,7 +27,7 @@ def _bazel_lint(name, files, ignore):
             tags = ["bzlcodestyle", "lint"],
         )
 
-        py_test_isolated(
+        py_test(
             name = name + "_buildifier",
             size = "small",
             srcs = ["@gz//bazel/lint:buildifier"],

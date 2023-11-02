@@ -40,6 +40,7 @@ GZ_FEATURES = [
 
 cmake_configure_file = _cmake_configure_file
 gz_configure_header = _gz_configure_header
+gz_configure_file = _gz_configure_header
 gz_export_header = _gz_export_header
 gz_include_header = _gz_include_header
 add_lint_tests = _add_lint_tests
