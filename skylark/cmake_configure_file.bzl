@@ -38,7 +38,7 @@ _cmake_configure_file_gen = rule(
         "undefines": attr.string_list(),
         "cmakelists": attr.label_list(allow_files = True),
         "cmake_configure_file_py": attr.label(
-            cfg = "host",
+            cfg = "exec",
             executable = True,
             default = Label("@gz//bazel/skylark:cmake_configure_file"),
         ),

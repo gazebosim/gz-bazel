@@ -42,7 +42,7 @@ _gz_configure_file_gen = rule(
         "undefines": attr.string_list(),
         "cmakelists": attr.label_list(allow_files = True),
         "gz_configure_file_py": attr.label(
-            cfg = "host",
+            cfg = "exec",
             executable = True,
             default = Label("@gz//bazel/skylark:gz_configure_file"),
         ),

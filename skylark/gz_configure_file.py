@@ -39,11 +39,11 @@ def _transform(line, definitions):
         blank, maybe01, var, rest, newline = match.groups()
         defined = definitions.get(var) is not None
         if maybe01:
-            return blank + '#define ' + var + [' 0', ' 1'][defined] + newline
+            return blank + '#define ' + str(var) + [' 0', ' 1'][defined] + newline
         elif defined:
-            line = blank + '#define ' + var + rest + newline
+            line = blank + '#define ' + str(var) + rest + newline
         else:
-            return blank + '/* #undef ' + var + ' */' + newline
+            return blank + '/* #undef ' + str(var) + ' */' + newline
 
     # Replace variable substitutions.
     while True:
@@ -51,6 +51,7 @@ def _transform(line, definitions):
         if not match:
             break
         before, xvarx, after, newline = match.groups()
+        var = ''
         if xvarx[0] == '$':
             assert len(xvarx) >= 4
             assert xvarx[1] == '{'
@@ -60,14 +61,15 @@ def _transform(line, definitions):
             assert len(xvarx) >= 3
             assert xvarx[-1] == '@'
             var = xvarx[1:-1]
-        assert len(var) > 0
+        assert var
 
         if var not in definitions:
             raise KeyError('Missing definition for ' + var)
         value = definitions.get(var)
+
         if value is None:
             value = ''
-        line = before + value + after + newline
+        line = before + str(value) + after + newline
 
     return line
 
@@ -189,4 +191,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
