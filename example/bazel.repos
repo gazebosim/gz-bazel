@@ -38,7 +38,7 @@ repositories:
   transport:
     type: git
     url: https://github.com/gazebosim/gz-transport
-    version: mjcarroll/garden_bazel
+    version: gz-transport12
   utils:
     type: git
     url: https://github.com/gazebosim/gz-utils
