@@ -51,6 +51,7 @@ ln -sf ${WORKSPACE}/bazel/example/WORKSPACE.example ${WORKSPACE}/WORKSPACE
 ln -sf ${WORKSPACE}/bazel/example/BUILD.bazel.example ${WORKSPACE}/BUILD.bazel
 ln -sf ${WORKSPACE}/bazel/example/bazelrc.example ${WORKSPACE}/.bazelrc
 ln -sf ${WORKSPACE}/bazel/example/bazelproject.example ${WORKSPACE}/.bazelproject
+ln -sf ${WORKSPACE}/bazel/example/bazeliskrc.example ${WORKSPACE}/.bazeliskrc
 
 echo ::group::Bazel query
 ${BAZEL} query $BAZEL_ARGS
