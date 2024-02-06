@@ -22,3 +22,16 @@ build:gcc --action_env=CC=gcc
 build:gcc --action_env=CXX=g++
 build:gcc --host_action_env=CC=gcc
 build:gcc --host_action_env=CXX=g++
+
+build:asan --copt=-g
+build:asan --copt=-fno-common
+build:asan --copt=-fsanitize=address
+build:asan --copt=-fsanitize-address-use-after-scope
+build:asan --copt=-O0
+build:asan --copt=-fno-omit-frame-pointer
+build:asan --linkopt=-fsanitize=address
+build:asan --linkopt=-fsanitize-address-use-after-scope
+build:asan --test_env=ASAN_OPTIONS=detect_odr_violation=0
+build:asan --test_env=LSAN_OPTIONS
+build:asan --test_env=ASAN_SYMBOLIZER_PATH
+build:asan --test_env=LSAN_SYMBOLIZER_PATH
