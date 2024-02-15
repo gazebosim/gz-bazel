@@ -1,0 +1,17 @@
+# -*- python -*-
+
+load(":vars.bzl", "LIBDIR")
+
+cc_library(
+    name = "ccd",
+    hdrs = glob([
+        "include/fcl/*.h",
+    ]),
+    includes = ["include"],
+    linkopts = [
+        "-L" + LIBDIR,
+        "-Wl,-rpath," + LIBDIR,
+        "-lccd",
+    ],
+    visibility = ["//visibility:public"],
+)

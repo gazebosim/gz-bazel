@@ -6,6 +6,7 @@ load("@gz//bazel/workspace/assimp:repository.bzl", "assimp_repository")  # noqa
 load("@gz//bazel/workspace/backward:repository.bzl", "backward_repository")  # noqa
 load("@gz//bazel/workspace/bazel_skylib:repository.bzl", "bazel_skylib_repository")  # noqa
 load("@gz//bazel/workspace/buildifier:repository.bzl", "buildifier_repository")  # noqa
+load("@gz//bazel/workspace/ccd:repository.bzl", "ccd_repository")  # noqa
 load("@gz//bazel/workspace/cli11:repository.bzl", "cli11_repository")  # noqa
 load("@gz//bazel/workspace/curl:repository.bzl", "curl_repository")  # noqa
 load("@gz//bazel/workspace/eigen3:repository.bzl", "eigen3_repository")  # noqa
@@ -60,6 +61,8 @@ def add_default_repositories(excludes = [], mirrors = DEFAULT_MIRRORS):
         bazel_skylib_repository(name = "bazel_skylib", mirrors = mirrors)
     if "buildifier" not in excludes:
         buildifier_repository(name = "buildifier", mirrors = mirrors)
+    if "ccd" not in excludes:
+        ccd_repository(name = "ccd")
     if "cli11" not in excludes:
         cli11_repository(name = "cli11", mirrors = mirrors)
     if "curl" not in excludes:
