@@ -1,4 +1,7 @@
-# Things needed for dart
 libnlopt-cxx-dev
 libfmt-dev
 libopenscenegraph-dev
+libx11-xcb-dev
+libxcb-render0-dev
+rapidjson-dev
+libfreetype6-dev

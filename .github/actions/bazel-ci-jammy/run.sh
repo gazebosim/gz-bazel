@@ -39,6 +39,7 @@ cp -R ${GITHUB_WORKSPACE}/.github ${WORKSPACE}/bazel
 vcs import . < ${WORKSPACE}/bazel/example/bazel.repos
 
 echo ::group::Install dependencies from binaries
+sudo apt update
 EXCLUDE_APT="libignition|libgz|libsdformat|libogre|dart"
 UBUNTU_VERSION=`lsb_release -cs`
 ALL_PACKAGES=$( \
