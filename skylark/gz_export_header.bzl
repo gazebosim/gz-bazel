@@ -35,12 +35,22 @@ def gz_export_header(name, lib_name, export_base, visibility, **kwargs):
 #ifndef {export_base}_EXPORT_HH_
 #define {export_base}_EXPORT_HH_
 
+#ifndef DETAIL_{export_base}_VISIBLE
+#define DETAIL_{export_base}_VISIBLE \
+    __attribute__ ((visibility("default")))
+#endif
+
+#ifndef DETAIL_{export_base}_HIDDEN
+#define DETAIL_{export_base}_HIDDEN \
+    __attribute__ ((visibility("hidden")))
+#endif
+
 #ifndef {export_base}_VISIBLE
 /// For {lib_name} developers: Apply this macro to {lib_name}
 /// functions and classes which consumers of this library will need to be able
 /// to call from their own programs or libraries.
 #define {export_base}_VISIBLE \
-    __attribute__ ((visibility("default")))
+    DETAIL_{export_base}_VISIBLE
 #endif
 
 
@@ -51,7 +61,7 @@ def gz_export_header(name, lib_name, export_base, visibility, **kwargs):
 /// not tagged with {export_base}_VISIBLE, so this does not
 /// generally need to be used.
 #define {export_base}_HIDDEN \
-    __attribute__ ((visibility("hidden")))
+    DETAIL_{export_base}_HIDDEN
 #endif
 
 
