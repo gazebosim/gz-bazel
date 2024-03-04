@@ -1,20 +1,8 @@
 repositories:
-  third_party/bullet3:
-    type: git
-    url: https://github.com/gazebo-forks/bullet3
-    version: mjcarroll/garden_bazel
-  third_party/dart:
-    type: git
-    url: https://github.com/gazebo-forks/dart
-    version: mjcarroll/garden_bazel
   common:
     type: git
     url: https://github.com/gazebosim/gz-common
     version: gz-common5
-  fuel_tools:
-    type: git
-    url: https://github.com/gazebosim/gz-fuel-tools
-    version: gz-fuel-tools8
   math:
     type: git
     url: https://github.com/gazebosim/gz-math
@@ -22,23 +10,11 @@ repositories:
   msgs:
     type: git
     url: https://github.com/gazebosim/gz-msgs
-    version: mjcarroll/garden_bazel
-  physics:
-    type: git
-    url: https://github.com/gazebosim/gz-physics
-    version: gz-physics6
-  plugin:
-    type: git
-    url: https://github.com/gazebosim/gz-plugin
-    version: gz-plugin2
+    version: mjcarroll/harmonic_bazel
   sdformat:
     type: git
     url: https://github.com/gazebosim/sdformat
-    version: sdf13
-  transport:
-    type: git
-    url: https://github.com/gazebosim/gz-transport
-    version: gz-transport12
+    version: sdf14
   utils:
     type: git
     url: https://github.com/gazebosim/gz-utils
