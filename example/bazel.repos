@@ -6,7 +6,7 @@ repositories:
   math:
     type: git
     url: https://github.com/gazebosim/gz-math
-    version: gz-math7
+    version: mjcarroll/bazel_fixes
   plugin:
     type: git
     url: https://github.com/gazebosim/gz-plugin
